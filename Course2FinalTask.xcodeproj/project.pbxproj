@@ -13,8 +13,6 @@
 		74B7925F202B3254006BCB41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74B7925E202B3254006BCB41 /* Assets.xcassets */; };
 		764B632D2510AD6A0037F5F3 /* FeedProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B632C2510AD6A0037F5F3 /* FeedProtocols.swift */; };
 		764B63312510ADA90037F5F3 /* FeedCellObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B63302510ADA90037F5F3 /* FeedCellObject.swift */; };
-		764B6336251148320037F5F3 /* ProfileViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B6335251148320037F5F3 /* ProfileViewInputProtocol.swift */; };
-		764B63382511489D0037F5F3 /* ProfileViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B63372511489D0037F5F3 /* ProfileViewOutputProtocol.swift */; };
 		764B633A251149520037F5F3 /* ProfileCellObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B6339251149520037F5F3 /* ProfileCellObject.swift */; };
 		764B633C251149670037F5F3 /* ProfileHeaderObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B633B251149670037F5F3 /* ProfileHeaderObject.swift */; };
 		764F75622503BA5D00116C97 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764F75612503BA5D00116C97 /* FeedViewController.swift */; };
@@ -29,6 +27,13 @@
 		764F75E22508E37400116C97 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764F75E12508E37400116C97 /* ProfileViewController.swift */; };
 		764F75E42508E41800116C97 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764F75E32508E41800116C97 /* ProfileCell.swift */; };
 		764F75E62508E4A800116C97 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764F75E52508E4A800116C97 /* ProfileHeaderView.swift */; };
+		768CFE1C25358CFC008DD209 /* ProfileProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768CFE1B25358CFC008DD209 /* ProfileProtocols.swift */; };
+		768CFE2425358FE1008DD209 /* DetailsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768CFE2325358FE1008DD209 /* DetailsProtocols.swift */; };
+		768CFE2625358FF5008DD209 /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768CFE2525358FF5008DD209 /* DetailsModel.swift */; };
+		768CFE282535901A008DD209 /* DetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768CFE272535901A008DD209 /* DetailsController.swift */; };
+		768CFE2A25359036008DD209 /* DetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768CFE2925359036008DD209 /* DetailsCell.swift */; };
+		768CFE2C25359054008DD209 /* DetailsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768CFE2B25359054008DD209 /* DetailsObject.swift */; };
+		768CFE2E2535907A008DD209 /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768CFE2D2535907A008DD209 /* DetailsPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,8 +58,6 @@
 		74B79263202B3254006BCB41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		764B632C2510AD6A0037F5F3 /* FeedProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProtocols.swift; sourceTree = "<group>"; };
 		764B63302510ADA90037F5F3 /* FeedCellObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellObject.swift; sourceTree = "<group>"; };
-		764B6335251148320037F5F3 /* ProfileViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewInputProtocol.swift; sourceTree = "<group>"; };
-		764B63372511489D0037F5F3 /* ProfileViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewOutputProtocol.swift; sourceTree = "<group>"; };
 		764B6339251149520037F5F3 /* ProfileCellObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellObject.swift; sourceTree = "<group>"; };
 		764B633B251149670037F5F3 /* ProfileHeaderObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderObject.swift; sourceTree = "<group>"; };
 		764F75612503BA5D00116C97 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +72,13 @@
 		764F75E12508E37400116C97 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		764F75E32508E41800116C97 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		764F75E52508E4A800116C97 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		768CFE1B25358CFC008DD209 /* ProfileProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProtocols.swift; sourceTree = "<group>"; };
+		768CFE2325358FE1008DD209 /* DetailsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsProtocols.swift; sourceTree = "<group>"; };
+		768CFE2525358FF5008DD209 /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
+		768CFE272535901A008DD209 /* DetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsController.swift; sourceTree = "<group>"; };
+		768CFE2925359036008DD209 /* DetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCell.swift; sourceTree = "<group>"; };
+		768CFE2B25359054008DD209 /* DetailsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsObject.swift; sourceTree = "<group>"; };
+		768CFE2D2535907A008DD209 /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				74B79256202B3254006BCB41 /* Course2FinalTask */,
-				7484B05320441FD000BDE1A6 /* DataProvider.framework */,
 				74B79255202B3254006BCB41 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,7 +132,8 @@
 			children = (
 				74B79257202B3254006BCB41 /* AppDelegate.swift */,
 				764F7615250A586400116C97 /* Feed */,
-				764F7616250A587300116C97 /* Module2 */,
+				764F7616250A587300116C97 /* Profile */,
+				768CFE1D25358EA7008DD209 /* Details */,
 				764F75942507904500116C97 /* Service  */,
 			);
 			path = Code;
@@ -141,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				74B79263202B3254006BCB41 /* Info.plist */,
+				7484B05320441FD000BDE1A6 /* DataProvider.framework */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -186,14 +197,15 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		764F7616250A587300116C97 /* Module2 */ = {
+		764F7616250A587300116C97 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				768CFE1A25358CD2008DD209 /* Protocols */,
 				764F7624250BD8A900116C97 /* Model */,
 				764F7625250BD8F700116C97 /* View */,
 				764F7626250BD93A00116C97 /* Presenter */,
 			);
-			path = Module2;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		764F7624250BD8A900116C97 /* Model */ = {
@@ -207,9 +219,8 @@
 		764F7625250BD8F700116C97 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				764F75E12508E37400116C97 /* ProfileViewController.swift */,
-				764B6335251148320037F5F3 /* ProfileViewInputProtocol.swift */,
 				764B633D251149760037F5F3 /* Cell */,
+				764F75E12508E37400116C97 /* ProfileViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,7 +228,6 @@
 		764F7626250BD93A00116C97 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				764B63372511489D0037F5F3 /* ProfileViewOutputProtocol.swift */,
 				764F758C2507900000116C97 /* ProfilePresenter.swift */,
 			);
 			path = Presenter;
@@ -246,6 +256,67 @@
 				764F758E2507900B00116C97 /* FeedPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		768CFE1A25358CD2008DD209 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				768CFE1B25358CFC008DD209 /* ProfileProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		768CFE1D25358EA7008DD209 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				768CFE1E25358EBA008DD209 /* Protocols */,
+				768CFE2025358F17008DD209 /* Model */,
+				768CFE1F25358ED1008DD209 /* View */,
+				768CFE272535901A008DD209 /* DetailsController.swift */,
+				768CFE2125358F40008DD209 /* Presenter */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		768CFE1E25358EBA008DD209 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				768CFE2325358FE1008DD209 /* DetailsProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		768CFE1F25358ED1008DD209 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				768CFE2225358FBD008DD209 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		768CFE2025358F17008DD209 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				768CFE2525358FF5008DD209 /* DetailsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		768CFE2125358F40008DD209 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				768CFE2D2535907A008DD209 /* DetailsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		768CFE2225358FBD008DD209 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				768CFE2925359036008DD209 /* DetailsCell.swift */,
+				768CFE2B25359054008DD209 /* DetailsObject.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,24 +392,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				764F75622503BA5D00116C97 /* FeedViewController.swift in Sources */,
-				764B6336251148320037F5F3 /* ProfileViewInputProtocol.swift in Sources */,
 				764B633A251149520037F5F3 /* ProfileCellObject.swift in Sources */,
 				764F759C250790DA00116C97 /* FeedFooter.swift in Sources */,
 				764B633C251149670037F5F3 /* ProfileHeaderObject.swift in Sources */,
 				764F75662503E1E000116C97 /* AppTabBarController.swift in Sources */,
+				768CFE2425358FE1008DD209 /* DetailsProtocols.swift in Sources */,
+				768CFE2A25359036008DD209 /* DetailsCell.swift in Sources */,
 				764F75E22508E37400116C97 /* ProfileViewController.swift in Sources */,
+				768CFE282535901A008DD209 /* DetailsController.swift in Sources */,
 				764F758D2507900000116C97 /* ProfilePresenter.swift in Sources */,
+				768CFE2625358FF5008DD209 /* DetailsModel.swift in Sources */,
 				764F759A250790C900116C97 /* FeedHeader.swift in Sources */,
 				764F75E62508E4A800116C97 /* ProfileHeaderView.swift in Sources */,
 				764B632D2510AD6A0037F5F3 /* FeedProtocols.swift in Sources */,
 				764F75E02508CE3F00116C97 /* FeedCell.swift in Sources */,
 				764B63312510ADA90037F5F3 /* FeedCellObject.swift in Sources */,
+				768CFE2C25359054008DD209 /* DetailsObject.swift in Sources */,
 				764F75912507901900116C97 /* FeedModel.swift in Sources */,
 				764F758F2507900B00116C97 /* FeedPresenter.swift in Sources */,
 				74B79258202B3254006BCB41 /* AppDelegate.swift in Sources */,
-				764B63382511489D0037F5F3 /* ProfileViewOutputProtocol.swift in Sources */,
 				764F75932507903400116C97 /* ProfileModel.swift in Sources */,
 				764F75E42508E41800116C97 /* ProfileCell.swift in Sources */,
+				768CFE1C25358CFC008DD209 /* ProfileProtocols.swift in Sources */,
+				768CFE2E2535907A008DD209 /* DetailsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

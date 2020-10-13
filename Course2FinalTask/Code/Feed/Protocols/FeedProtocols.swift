@@ -10,15 +10,15 @@ import Foundation
 
 protocol FeedViewInputProtocol: class {
     // Presenter -> View
-    
     func setupInitialState()
     func setPosts(_ objects: [FeedCellObject])
 }
-
+protocol FeedCellDelegate {
+    
+}
 protocol FeedViewOutputProtocol: class {
     // View -> Presenter
     
     var title: String { get }
-    
     func viewIsReady()
 }

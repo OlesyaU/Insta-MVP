@@ -35,7 +35,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
             images.append(i.image)
         }
         
-        self.controller.setUserPosts(images: images)
+//        self.controller.setUserPosts(images: images)
         return images
         }
    
@@ -46,7 +46,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         let following = "Following: \(self.model.currentUser.followsCount)"
         let title = self.model.currentUser.username
 
-        self.controller.setUserInfo(avatar: userAvatar, name: userName, followers: followers, following: following, title: title)
+//        self.controller.setUserInfo(avatar: userAvatar, name: userName, followers: followers, following: following, title: title)
       }
     
     func showVC() -> UIViewController {

@@ -65,9 +65,7 @@ final class FeedCell: UITableViewCell {
     // MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        backgroundColor = .green
-        
+     
         addSubviewsToCell()
         headerConstraints()
         footerConstraints()
@@ -118,21 +116,8 @@ final class FeedCell: UITableViewCell {
     //        }
     //    }
     
-    //     //MARK: - Layout
-    //    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
-    //
-    //        var targetSize = targetSize
-    //        targetSize.height = CGFloat.greatestFiniteMagnitude
-    //
-    //        let size = super.systemLayoutSizeFitting(
-    //            targetSize,
-    //            withHorizontalFittingPriority: .required,
-    //            verticalFittingPriority: .fittingSizeLevel
-    //        )
-    //
-    //        return size
-    //    }
-    
+   //MARK: - Layout
+        
     private func addSubviewsToCell() {
         contentView.addSubview(headerView)
         contentView.addSubview(footerView)
