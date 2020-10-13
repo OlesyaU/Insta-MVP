@@ -13,6 +13,6 @@ struct ProfileHeaderObject {
     let fullName: String
     let followers: Int
     let following: Int
-    let avatar: UIImage
+    let avatar: UIImage?
     let userName: String
 }

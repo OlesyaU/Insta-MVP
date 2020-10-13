@@ -8,20 +8,15 @@
 
 import UIKit
 
-private let reuseIdentifier = "Celll"
-private let reuseHeaderID = "HeaderID"
-
  final class ProfileViewController: UICollectionViewController {
     
-    private var presenter: ProfilePresenterProtocol!
-    private let profileFeedPosts = [ProfileCellObject]()
-//    private let cell = ProfileCell()
-//    private let header = ProfileHeaderView()
-
+    var presenter: ProfileOutputProtocol!
+    private var profileFeedPosts = [ProfileCellObject]()
+    private var profileHeader: ProfileHeaderObject?
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
     super.init(collectionViewLayout: layout)
-        
+
     }
     
     required init?(coder: NSCoder) {
@@ -30,55 +25,51 @@ private let reuseHeaderID = "HeaderID"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.dataSource = self
-        collectionView.delegate = self
-    
-        self.collectionView!.register(ProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderID")
-        self.collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: "Celll")
-        self.view.backgroundColor = .green
-       
     }
 
 
     // MARK: UICollectionViewDataSource
 
-   
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return profileFeedPosts.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Celll", for: indexPath) as? ProfileCell else {return UICollectionViewCell()}
-        cell.backgroundColor = .blue
-//        cell.postImage.image = profileFeedPosts[indexPath.row].image
-    
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileCell.self), for: indexPath) as? ProfileCell else {return UICollectionViewCell()}
+        let post = profileFeedPosts[indexPath.row]
+        cell.configuration(post)
+        
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-   
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: ProfileHeaderObject.self), for: indexPath) as? ProfileHeaderView else {return UICollectionReusableView()}
+        return header
+    }
 }
-extension ProfileViewController: ProfileViewInputProtocol {
-    func setVC() -> UIViewController {
-        return self
-    }
-    
-    
-    func setUserPosts(images: [UIImage]) {
-        for i in images {
-//            self.cell.postImage.image = i
 
-    }
+extension ProfileViewController: ProfileInputProtocol {
+    
+    func setupInitialState() {
+        title = presenter.title
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.backgroundColor = .white
+        self.collectionView!.register(ProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: ProfileHeaderView.self))
+        self.collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: String(describing: ProfileCell.self))
+        
     }
     
-    func setUserInfo(avatar: UIImage, name: String, followers: String, following: String, title: String) {
-    
-//        self.header.avatarImage.image = avatar
-//        self.header.nameLabel.text = name
-//       self.header.followersLabel.text = followers
-//        self.header.followingLabel.text = following
-        self.title = title
+    func setPosts(_ posts: [ProfileCellObject]) {
+        profileFeedPosts = posts
+        collectionView.reloadData()
     }
-      
+    
+    func setHeader(_ header: ProfileHeaderObject) {
+        profileHeader = header
+        collectionView.reloadData()
+    }
+    
+    
+    
 }

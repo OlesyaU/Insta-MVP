@@ -11,14 +11,12 @@ import UIKit
 final class FeedViewController: UITableViewController {
     
     var output: FeedViewOutputProtocol!
-    
     private var feedCellObjects = [FeedCellObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.viewIsReady()
-    }
+        output.viewIsReady()    }
     
     // MARK: - Table view data source
     
@@ -39,9 +37,8 @@ final class FeedViewController: UITableViewController {
 // MARK: - FeedViewInputProtocol
 extension FeedViewController: FeedViewInputProtocol {
     func setupInitialState() {
-        view.backgroundColor = .systemPink
         title = output.title
-        
+        tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(FeedCell.self, forCellReuseIdentifier: String(describing: FeedCell.self))
@@ -49,7 +46,6 @@ extension FeedViewController: FeedViewInputProtocol {
     
     func setPosts(_ objects: [FeedCellObject]) {
         feedCellObjects = objects
-        
         tableView.reloadData()
     }
 }

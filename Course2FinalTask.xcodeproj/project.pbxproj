@@ -105,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				74B79256202B3254006BCB41 /* Course2FinalTask */,
+				7484B05320441FD000BDE1A6 /* DataProvider.framework */,
 				74B79255202B3254006BCB41 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -151,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				74B79263202B3254006BCB41 /* Info.plist */,
-				7484B05320441FD000BDE1A6 /* DataProvider.framework */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";

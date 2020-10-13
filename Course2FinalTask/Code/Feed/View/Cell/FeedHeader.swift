@@ -9,15 +9,6 @@
 import UIKit
 
   final class FeedHeader: UIView {
-//   var post: Post? {
-//       didSet {
-//           avatarImageView.image = post?.authorAvatar
-//           nameLabel.text = post?.authorUsername
-//           dateLabel.text = makeFormattedDate(post: post)
-//       }
-//   }
-   
-   let ident = "FeedHeader"
    
    let avatarImageView: UIImageView = {
        let imageView = UIImageView(frame: .zero)
@@ -56,16 +47,7 @@ import UIKit
    }
    
    // MARK: - Helpers
-//   private func makeFormattedDate(post: Post?) -> String? {
-//       guard let post = post else { return nil }
-//       
-//       let formatter = DateFormatter()
-//       formatter.timeStyle = .medium
-//       formatter.dateStyle = .medium
-//       formatter.doesRelativeDateFormatting = true
-//       
-//       return formatter.string(from: post.createdTime)
-//   }
+
    
    private func addSubviewsToHeader() {
        addSubview(avatarImageView)

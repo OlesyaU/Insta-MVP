@@ -9,6 +9,7 @@
 import UIKit
 
 final class FeedCell: UITableViewCell {
+    
     private let headerView: FeedHeader = {
         let headerView = FeedHeader(frame: .zero)
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -17,6 +18,7 @@ final class FeedCell: UITableViewCell {
         return headerView
     }()
     
+   
     private let footerView: FeedFooter = {
         let footerView = FeedFooter(frame: .zero)
         footerView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +52,20 @@ final class FeedCell: UITableViewCell {
         imageView.image = #imageLiteral(resourceName: "bigLike")
         return imageView
     }()
+    private var likesCount: Int? {
+           didSet {
+               footerView.likesLabel.text = "Likes: \(likesCount)"
+               }
+       }
+       private var isLiked: Bool? {
+           didSet {
+               if isLiked! {
+                   footerView.likeButton.tintColor = .systemBlue
+               } else {
+                   footerView.likeButton.tintColor = .lightGray
+               }
+           }
+       }
     
     //    private lazy var postImageDoubleTapGesture: UITapGestureRecognizer = {
     //        let gesture = UITapGestureRecognizer(target: self, action: #selector(postImageDoubleTapped))
@@ -78,6 +94,11 @@ final class FeedCell: UITableViewCell {
     }
     
     func configure(_ data: FeedCellObject) {
+        if data.isliked {
+            footerView.likeButton.tintColor = .systemBlue
+        } else {
+            footerView.likeButton.tintColor = .lightGray
+        }
         headerView.nameLabel.text = data.userName
         headerView.avatarImageView.image = data.userAvatar
         headerView.dateLabel.text = data.datePost

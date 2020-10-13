@@ -15,8 +15,8 @@ struct ProfileModel {
         return DataProviders.shared.usersDataProvider.currentUser()
     }
     
-    var currentUserPosts: [Post]? {
-        return DataProviders.shared.postsDataProvider.findPosts(by: currentUser.id)
+    var currentUserPosts: [Post] {
+        return DataProviders.shared.postsDataProvider.findPosts(by: currentUser.id) ?? []
     }
     
     var userName: String {

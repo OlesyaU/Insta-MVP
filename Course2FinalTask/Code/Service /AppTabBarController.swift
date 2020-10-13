@@ -13,7 +13,6 @@ class AppTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.barTintColor = .purple
         
         setViewControllers([buildFeedModule(), buildProfileModule()], animated: true)
     }
@@ -32,11 +31,18 @@ class AppTabBarController: UITabBarController {
         return feedNavigationController
     }
     
-    private func buildProfileModule() -> ProfileViewController {
+    private func buildProfileModule() -> UINavigationController {
+        let presenter = ProfilePresenter(model: ProfileModel())
+        
         let profileViewController = ProfileViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        profileViewController.presenter = presenter
+        
+        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
+        presenter.controller = profileViewController
+        
         profileViewController.tabBarItem.image = #imageLiteral(resourceName: "profile")
-        profileViewController.title = "Profile"
+       
 
-        return profileViewController
+        return profileNavigationController
     }
 }

@@ -9,9 +9,7 @@
 import UIKit
 
  final class FeedFooter: UIView {
-      let ident = "FeedFooter"
-
-       
+ 
  lazy var likesLabel: UILabel = {
            let likesLabel = UILabel(frame: .zero)
            likesLabel.font = .systemFont(ofSize: 14, weight: .semibold)

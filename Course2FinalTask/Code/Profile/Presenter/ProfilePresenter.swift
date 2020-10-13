@@ -12,46 +12,32 @@ import DataProvider
 class ProfilePresenter: NSObject {
     
     let model: ProfileModel
-    let controller: ProfileViewInputProtocol
+  weak  var  controller: ProfileInputProtocol?
    
-   required init(model: ProfileModel, controller: ProfileViewInputProtocol) {
+    required init(model: ProfileModel) {
         self.model = model
-        self.controller = controller
+
        }
     }
 
-extension ProfilePresenter: ProfilePresenterProtocol {
-    var postCount: Int? {
-        get {
-            model.currentUserPosts?.count
-        }
-        }
+extension ProfilePresenter: ProfileOutputProtocol {
     
-    func showPost() -> [UIImage] {
-        guard let posts = self.model.currentUserPosts else {return []}
-        var images = [UIImage]()
-        
-        for i in posts {
-            images.append(i.image)
+    func viewIsReady() {
+        controller?.setupInitialState()
+        let arrayPostImage: [ProfileCellObject] = model.currentUserPosts.map{
+            ProfileCellObject(image: $0.image)
         }
+        let modelUser = model.currentUser
+        let user = ProfileHeaderObject(fullName: modelUser.fullName, followers: modelUser.followedByCount, following: modelUser.followsCount, avatar: modelUser.avatar, userName: modelUser.username)
         
-//        self.controller.setUserPosts(images: images)
-        return images
-        }
-   
-    func showUserInfo() {
-        let userName = self.model.currentUser.fullName
-        guard let userAvatar = self.model.currentUser.avatar else {return}
-        let followers = "Followers: \(self.model.currentUser.followedByCount)"
-        let following = "Following: \(self.model.currentUser.followsCount)"
-        let title = self.model.currentUser.username
-
-//        self.controller.setUserInfo(avatar: userAvatar, name: userName, followers: followers, following: following, title: title)
-      }
-    
-    func showVC() -> UIViewController {
-        let on = self.controller
-        return on as! UIViewController
-      
+        controller?.setHeader(user)
+        controller?.setPosts(arrayPostImage)
+        
     }
+    
+    
+    var title: String {
+        return "Profile"
+    }
+    
 }

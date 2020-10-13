@@ -10,26 +10,26 @@ import Foundation
 
 protocol ProfileInputProtocol: NSObject {
     // Presenter -> View
+    func setupInitialState()
+       func setPosts(_ posts: [ProfileCellObject])
+       func setHeader(_ header: ProfileHeaderObject)
 }
 
 protocol ProfileCellDelegate: NSObject{
-    
+   
 }
 protocol ProfileOutputProtocol: NSObject {
     // View -> Presenter
+    var title: String { get }
+        func viewIsReady()
 }
 
-protocol ProfilePresenterProtocol: class {
-    var postCount: Int? { get }
-    init(model: ProfileModel, controller: ProfileViewInputProtocol)
-func showUserInfo()
-//   func showPost() -> [UIImage]
-//    func showVC() -> UIViewController
-    }
+//protocol ProfilePresenterProtocol: class {
+//    var postCount: Int? { get }
+//    init(model: ProfileModel)
+//func showUserInfo()
+////   func showPost() -> [UIImage]
+////    func showVC() -> UIViewController
+//    }
 
-protocol ProfileViewInputProtocol: class {
-//    func setUserPosts(images: [UIImage])
-//    func setUserInfo(avatar: UIImage, name: String, followers: String, following: String, title: String)
-//    func setVC() -> UIViewController
-     
-}
+

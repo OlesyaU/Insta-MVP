@@ -10,15 +10,13 @@ import Foundation
 import DataProvider
 
  class FeedModel {
-     typealias Result = ([Post]) -> Void
-
-    var posts: [Post] {
+    
+  var posts: [Post] {
         return DataProviders.shared.postsDataProvider.feed()
     }
     
-    func posts(_ result: @escaping Result)  {
-        result( DataProviders.shared.postsDataProvider.feed())
-    }
+    
+    
 }
 
     
@@ -46,14 +44,7 @@ import DataProvider
 //    var isLikedCorrentPOst: Bool {
 //        return currentPost.currentUserLikesThisPost
 //    }
-//    func datePost() -> String {
-//        let time = currentPost.createdTime
-//       let formatter = DateFormatter()
-//            formatter.timeStyle = .medium
-//            formatter.dateStyle = .medium
-//            formatter.doesRelativeDateFormatting = true
-//            return formatter.string(from: time)
-//        }
+
         
    
 //    var likedPost: Bool {

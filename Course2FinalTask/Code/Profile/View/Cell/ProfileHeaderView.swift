@@ -8,9 +8,9 @@
 
 import UIKit
 
- final class ProfileHeaderView: UICollectionReusableView {
-private let avatarHeight: CGFloat = 70
-       private let constraint: CGFloat = 8
+final class ProfileHeaderView: UICollectionReusableView {
+    private let avatarHeight: CGFloat = 70
+    private let constraint: CGFloat = 8
     
  lazy var avatarImage: UIImageView = {
           let avatar = UIImageView()
