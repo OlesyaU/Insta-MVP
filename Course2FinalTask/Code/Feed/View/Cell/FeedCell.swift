@@ -87,7 +87,7 @@ final class FeedCell: UITableViewCell {
         footerView.descriptionLabel.text = data.description
         footerView.likesLabel.text = "Likes: \(data.likesCount)"
         
-        imageView?.image = data.imagePost
+        postImageView.image = data.imagePost
     }
     
     //   //MARK: - Actions
