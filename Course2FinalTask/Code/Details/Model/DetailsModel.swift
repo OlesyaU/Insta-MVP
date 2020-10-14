@@ -7,3 +7,18 @@
 //
 
 import Foundation
+import DataProvider
+
+final class DetailsModel {
+    
+    var user: User {
+        return DataProviders.shared.usersDataProvider.currentUser()
+    }
+    var followers: [User] {
+        return DataProviders.shared.usersDataProvider.usersFollowingUser(with: user.id) ?? []
+    }
+    var following: [User] {
+        return DataProviders.shared.usersDataProvider.usersFollowedByUser(with: user.id) ?? []
+    }
+    
+}

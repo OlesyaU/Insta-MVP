@@ -14,7 +14,6 @@ typealias Picture = UIImage
 final class FeedPresenter: NSObject {
     
     weak var view: FeedViewInputProtocol?
-    
     private let model: FeedModel
     
     init(model: FeedModel) {

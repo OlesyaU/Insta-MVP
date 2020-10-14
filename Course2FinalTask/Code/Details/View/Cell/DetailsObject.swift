@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct DetailsObject {
+    let avatar: PiCtuRe?
+    let userName: String
+}

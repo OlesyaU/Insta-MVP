@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import DataProvider
 
 struct ProfileCellObject {
-    let image: UIImage
+    let image: Picturee
 }

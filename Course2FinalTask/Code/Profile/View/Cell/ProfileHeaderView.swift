@@ -110,17 +110,17 @@ extension ProfileHeaderView {
       private func avatarConstraints() {
           avatarImage.heightAnchor.constraint(equalToConstant: avatarHeight).isActive = true
           avatarImage.widthAnchor.constraint(equalTo: avatarImage.heightAnchor).isActive = true
-          avatarImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: constraint).isActive = true
-          avatarImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: constraint).isActive = true
-          avatarImage.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -constraint).isActive = true
+          avatarImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: constraint).isActive = true
+          avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: constraint).isActive = true
+          avatarImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -constraint).isActive = true
       }
       
       private func nameLabelConstraints() {
-          nameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: constraint).isActive = true
+          nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: constraint).isActive = true
           nameLabel.bottomAnchor.constraint(equalTo: followersLabel.topAnchor).isActive = true
           nameLabel.heightAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 1 / 2).isActive = true
           nameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: constraint).isActive = true
-          nameLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
+          nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
       }
       
       private func containerViewConstraints() {
@@ -129,8 +129,8 @@ extension ProfileHeaderView {
 //          containerView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 1 / 2).isActive = true
           containerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
           containerView.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: constraint).isActive = true
-          containerView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -constraint * 2).isActive = true
-          containerView.bottomAnchor.constraint(equalToSystemSpacingBelow: self.safeAreaLayoutGuide.bottomAnchor, multiplier: -constraint).isActive = true
+          containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -constraint * 2).isActive = true
+          containerView.bottomAnchor.constraint(equalToSystemSpacingBelow: self.bottomAnchor, multiplier: -constraint).isActive = true
       }
       
       private func followersLabelConstraints() {

@@ -9,9 +9,11 @@
 import Foundation
 import DataProvider
 
+typealias Picturee = UIImage
+
 class ProfilePresenter: NSObject {
     
-    let model: ProfileModel
+   private let model: ProfileModel
   weak  var  controller: ProfileInputProtocol?
    
     required init(model: ProfileModel) {

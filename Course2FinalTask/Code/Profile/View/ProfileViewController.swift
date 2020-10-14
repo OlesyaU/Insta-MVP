@@ -9,6 +9,19 @@
 import UIKit
 
  final class ProfileViewController: UICollectionViewController {
+    enum ListType {
+           case followers
+           case following
+           case likes
+           
+           var title: String {
+               switch self {
+               case .likes: return "Likes"
+               case .following: return "Following"
+               case .followers: return "Followers"
+               }
+           }
+       }
     
     var presenter: ProfileOutputProtocol!
     private var profileFeedPosts = [ProfileCellObject]()
@@ -38,8 +51,6 @@ import UIKit
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationController?.title = profileHeader?.userName
-//        self.tabBarController?.title = "Profile"
         presenter.viewIsReady()
     }
 
@@ -57,34 +68,26 @@ override func collectionView(_ collectionView: UICollectionView, numberOfItemsIn
         
         return cell
     }
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: ProfileHeaderView.self), for: indexPath) as? ProfileHeaderView else {return UICollectionReusableView()}
-let headerData = profileHeader
-        navigationController?.title = headerData?.userName
-//        header.avatarImage.image = profileHeader?.avatar
-//        header.nameLabel.text = profileHeader?.userName
-//        header.followersLabel.text = "Followers: \(String(describing: profileHeader?.followers))"
-//        header.followingLabel.text = "Following: \(String(describing: profileHeader?.following))"
+        let headerData = profileHeader
         
         header.configurationHeader(headerData!)
         return header
     }
 }
 
+// MARK: InputProtocol
+
 extension ProfileViewController: ProfileInputProtocol {
     
-   
     func setupInitialState() {
-       
-//        self.navigationController?.title = profileHeader?.userName
         collectionView.dataSource = self
         collectionView.delegate = self
-
         collectionView.backgroundColor = .white
         self.collectionView!.register(ProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: ProfileHeaderView.self))
         self.collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: String(describing: ProfileCell.self))
-
-        
     }
     
     func setPosts(_ posts: [ProfileCellObject]) {
@@ -94,12 +97,12 @@ extension ProfileViewController: ProfileInputProtocol {
     
     func setHeader(_ header: ProfileHeaderObject) {
         profileHeader = header
-        self.tabBarItem.title = "Profile"
+        self.tabBarItem.title = presenter.title
         self.navigationItem.title = header.userName
         collectionView.reloadData()
     }
-    
 }
+// MARK: Layout
 
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -125,3 +128,4 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+// MARK: CellDelegateProtocol
