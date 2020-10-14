@@ -20,6 +20,7 @@ final class FeedCell: UITableViewCell {
     
    
     private let footerView: FeedFooter = {
+        
         let footerView = FeedFooter(frame: .zero)
         footerView.translatesAutoresizingMaskIntoConstraints = false
         footerView.isUserInteractionEnabled = true
@@ -54,7 +55,7 @@ final class FeedCell: UITableViewCell {
     }()
     private var likesCount: Int? {
            didSet {
-               footerView.likesLabel.text = "Likes: \(likesCount)"
+            footerView.likesLabel.text = "Likes: \(String(describing: likesCount))"
                }
        }
        private var isLiked: Bool? {

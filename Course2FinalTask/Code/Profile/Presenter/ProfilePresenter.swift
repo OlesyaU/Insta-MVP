@@ -32,9 +32,7 @@ extension ProfilePresenter: ProfileOutputProtocol {
         
         controller?.setHeader(user)
         controller?.setPosts(arrayPostImage)
-        
-    }
-    
+        }
     
     var title: String {
         return "Profile"

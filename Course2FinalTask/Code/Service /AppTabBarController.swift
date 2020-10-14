@@ -41,8 +41,7 @@ class AppTabBarController: UITabBarController {
         presenter.controller = profileViewController
         
         profileViewController.tabBarItem.image = #imageLiteral(resourceName: "profile")
-       
-
+        profileViewController.title = "Profile"
         return profileNavigationController
     }
 }

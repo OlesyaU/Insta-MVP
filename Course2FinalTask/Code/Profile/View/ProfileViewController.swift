@@ -13,18 +13,34 @@ import UIKit
     var presenter: ProfileOutputProtocol!
     private var profileFeedPosts = [ProfileCellObject]()
     private var profileHeader: ProfileHeaderObject?
+    private let itemsPerRow: CGFloat = 3
+    private let sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+    
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
     super.init(collectionViewLayout: layout)
-
-    }
+   }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    private let headerView: ProfileHeaderView = {
+           let headerView = ProfileHeaderView(frame: .zero)
+           headerView.translatesAutoresizingMaskIntoConstraints = false
+           headerView.backgroundColor = .gray
+           headerView.isUserInteractionEnabled = true
+           //        headerView.addGestureRecognizer(headerTapGesture)
+           return headerView
+       }()
+       
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        navigationController?.title = profileHeader?.userName
+//        self.tabBarController?.title = "Profile"
+        presenter.viewIsReady()
     }
 
 
@@ -42,21 +58,32 @@ override func collectionView(_ collectionView: UICollectionView, numberOfItemsIn
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: ProfileHeaderObject.self), for: indexPath) as? ProfileHeaderView else {return UICollectionReusableView()}
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: ProfileHeaderView.self), for: indexPath) as? ProfileHeaderView else {return UICollectionReusableView()}
+let headerData = profileHeader
+        navigationController?.title = headerData?.userName
+//        header.avatarImage.image = profileHeader?.avatar
+//        header.nameLabel.text = profileHeader?.userName
+//        header.followersLabel.text = "Followers: \(String(describing: profileHeader?.followers))"
+//        header.followingLabel.text = "Following: \(String(describing: profileHeader?.following))"
+        
+        header.configurationHeader(headerData!)
         return header
     }
 }
 
 extension ProfileViewController: ProfileInputProtocol {
     
+   
     func setupInitialState() {
-        title = presenter.title
+       
+//        self.navigationController?.title = profileHeader?.userName
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+
         collectionView.backgroundColor = .white
         self.collectionView!.register(ProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: ProfileHeaderView.self))
         self.collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: String(describing: ProfileCell.self))
+
         
     }
     
@@ -67,9 +94,34 @@ extension ProfileViewController: ProfileInputProtocol {
     
     func setHeader(_ header: ProfileHeaderObject) {
         profileHeader = header
+        self.tabBarItem.title = "Profile"
+        self.navigationItem.title = header.userName
         collectionView.reloadData()
     }
     
+}
+
+extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInset.right
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInset.bottom
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInset
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding =  sectionInset.left * (itemsPerRow + 1)
+        let widthGenerally = collectionView.frame.width - padding
+        let itemWidth = widthGenerally / itemsPerRow
+        return CGSize(width: itemWidth, height: itemWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize( width: self.view.frame.width, height: 86)
+    }
     
 }

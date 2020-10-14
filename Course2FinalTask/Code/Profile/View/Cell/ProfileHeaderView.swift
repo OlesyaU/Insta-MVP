@@ -62,7 +62,7 @@ final class ProfileHeaderView: UICollectionReusableView {
       
 //      private lazy var followersTapGesture = UITapGestureRecognizer(target: self, action: #selector(followersTapped(recognizer:)))
 //      private lazy var followingTapGesture = UITapGestureRecognizer(target: self, action: #selector(followingTapped(recognizer:)))
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
           addSubViews()
@@ -74,10 +74,17 @@ final class ProfileHeaderView: UICollectionReusableView {
       required init?(coder: NSCoder) {
           fatalError("init(coder:) has not been implemented")
       }
-      
-//    override func prepareForReuse() {
-//        <#code#>
-//    }
+//    MARK: - Configuration
+    
+      func configurationHeader(_ header: ProfileHeaderObject) {
+       avatarImage.image = header.avatar
+         nameLabel.text = header.fullName
+       followersLabel.text = "Followers: \(header.followers)"
+      followingLabel.text = "Following: \(header.following)"
+        }
+    
+    
+
 //      @objc private func followersTapped(recognizer: UITapGestureRecognizer) {
 //          onShowFollowers?()
 //      }
@@ -89,7 +96,9 @@ final class ProfileHeaderView: UICollectionReusableView {
 
 
 extension ProfileHeaderView {
-   
+    
+//   MARK: - Layout
+    
     private func addSubViews() {
           addSubview(avatarImage)
           addSubview(nameLabel)

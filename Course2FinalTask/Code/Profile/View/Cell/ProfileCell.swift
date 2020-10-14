@@ -10,15 +10,6 @@ import UIKit
 
  final class ProfileCell: UICollectionViewCell {
     
-    private let headerView: ProfileHeaderView = {
-        let headerView = ProfileHeaderView(frame: .zero)
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        headerView.isUserInteractionEnabled = true
-        //        headerView.addGestureRecognizer(headerTapGesture)
-        return headerView
-    }()
-    
-    
     lazy var postImage: UIImageView = {
           let image = UIImageView()
           image.isUserInteractionEnabled = true
@@ -29,8 +20,9 @@ import UIKit
       override init(frame: CGRect) {
           super.init(frame: frame)
           addSubview(postImage)
-          setConstraints()
+      setConstraints()
       }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,14 +30,9 @@ import UIKit
     func configuration(_ post: ProfileCellObject){
         postImage.image = post.image
     }
-      func configurationHeader(_ header: ProfileHeaderObject){
-      headerView.avatarImage.image = header.avatar
-      headerView.nameLabel.text = header.fullName
-      headerView.followersLabel.text = "Followers: \(header.followers)"
-      headerView.followingLabel.text = "Following: \(header.following)"
-    }
+    
       private func setConstraints() {
-          postImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        postImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
           postImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
           postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
           postImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
