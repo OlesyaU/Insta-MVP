@@ -16,4 +16,6 @@ struct FeedCellObject {
     let description: String
     let isliked: Bool
     let imagePost: Picture
+    let postId: Any
+    let userID: Any
 }

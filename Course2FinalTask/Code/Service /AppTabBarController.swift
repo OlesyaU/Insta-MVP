@@ -21,7 +21,7 @@ class AppTabBarController: UITabBarController {
         let presenter = FeedPresenter(model: FeedModel())
         
         let feedView = FeedViewController()
-        feedView.output = presenter
+        feedView.presenter = presenter
         
         let feedNavigationController = UINavigationController(rootViewController: feedView)
         presenter.view = feedView

@@ -14,6 +14,7 @@ protocol FeedViewInputProtocol: class {
     func setPosts(_ objects: [FeedCellObject])
 }
 protocol FeedCellDelegate {
+    func postImageDoubleTapped(_ post: FeedCellObject) 
     
 }
 protocol FeedViewOutputProtocol: class {
@@ -21,4 +22,5 @@ protocol FeedViewOutputProtocol: class {
     
     var title: String { get }
     func viewIsReady()
+    func postImageDoubleTapped(_ post: FeedCellObject)
 }

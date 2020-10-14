@@ -9,6 +9,7 @@
 import UIKit
 
  final class ProfileViewController: UICollectionViewController {
+    
     enum ListType {
            case followers
            case following

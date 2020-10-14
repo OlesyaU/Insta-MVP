@@ -23,6 +23,25 @@ final class FeedPresenter: NSObject {
 
 // MARK: - FeedViewOutputProtocol
 extension FeedPresenter: FeedViewOutputProtocol {
+    
+    func postImageDoubleTapped(_ post: FeedCellObject) {
+        let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
+        print("\(String(describing: post?.currentUserLikesThisPost)) initial value from PRESENTER postImageDoubleTapped")
+        switch post!.currentUserLikesThisPost {
+            case true:
+//                post?.likedByCount -= 1
+                let userBool = DataProviders.shared.postsDataProvider.unlikePost(with: post!.id)
+            print("\(userBool) from PRESENTER postImageDoubleTapped")
+              
+            default:
+//                post?.likedByCount += 1
+                let userBool = DataProviders.shared.postsDataProvider.likePost(with: post!.id)
+            print("\(userBool) from PRESENTER postImageDoubleTapped")
+               
+        }
+//        view?.setupInitialState()
+    }
+    
     var title: String {
         return "Feed"
     }
@@ -31,7 +50,7 @@ extension FeedPresenter: FeedViewOutputProtocol {
         view?.setupInitialState()
         
         let postsArray: [FeedCellObject] = model.posts.map {
-            FeedCellObject(userAvatar: $0.authorAvatar, userName: $0.authorUsername, datePost: makeFormattedDate(post: $0.createdTime), likesCount: $0.likedByCount, description: $0.description, isliked: $0.currentUserLikesThisPost, imagePost: $0.image)
+            FeedCellObject(userAvatar: $0.authorAvatar, userName: $0.authorUsername, datePost: makeFormattedDate(post: $0.createdTime), likesCount: $0.likedByCount, description: $0.description, isliked: $0.currentUserLikesThisPost, imagePost: $0.image, postId: $0.id, userID: $0.author)
         }
         
         view?.setPosts(postsArray)

@@ -10,13 +10,17 @@ import UIKit
 
 final class FeedViewController: UITableViewController {
     
-    var output: FeedViewOutputProtocol!
+    var presenter: FeedViewOutputProtocol!
     private var feedCellObjects = [FeedCellObject]()
+//    private let cell = FeedCell()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.viewIsReady()    }
+        presenter.viewIsReady()
+        
+    }
     
     // MARK: - Table view data source
     
@@ -26,7 +30,7 @@ final class FeedViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FeedCell.self), for: indexPath) as? FeedCell else { return UITableViewCell() }
-        
+        cell.delegate = self
         let userData = feedCellObjects[indexPath.row]
         cell.configure(userData)
         
@@ -37,7 +41,7 @@ final class FeedViewController: UITableViewController {
 // MARK: - FeedViewInputProtocol
 extension FeedViewController: FeedViewInputProtocol {
     func setupInitialState() {
-        title = output.title
+        title = presenter.title
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
@@ -48,4 +52,11 @@ extension FeedViewController: FeedViewInputProtocol {
         feedCellObjects = objects
         tableView.reloadData()
     }
+}
+extension FeedViewController: FeedCellDelegate {
+    
+    func postImageDoubleTapped(_ post: FeedCellObject) {
+        presenter.postImageDoubleTapped(post)
+    }
+    
 }

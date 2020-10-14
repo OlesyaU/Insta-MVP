@@ -10,6 +10,9 @@ import UIKit
 
 final class FeedCell: UITableViewCell {
     
+    var delegate: FeedCellDelegate!
+    var datA: FeedCellObject?
+    
     private let headerView: FeedHeader = {
         let headerView = FeedHeader(frame: .zero)
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +44,12 @@ final class FeedCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        //        imageView.addGestureRecognizer(postImageDoubleTapGesture)
+       let postImageDoubleTapGesture: UITapGestureRecognizer = {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(postImageDoubleTapped))
+            gesture.numberOfTapsRequired = 2
+            return gesture
+        }()
+        imageView.addGestureRecognizer(postImageDoubleTapGesture)
         return imageView
     }()
     
@@ -68,11 +76,7 @@ final class FeedCell: UITableViewCell {
            }
        }
     
-    //    private lazy var postImageDoubleTapGesture: UITapGestureRecognizer = {
-    //        let gesture = UITapGestureRecognizer(target: self, action: #selector(postImageDoubleTapped))
-    //        gesture.numberOfTapsRequired = 2
-    //        return gesture
-    //    }()
+        
     
     //    private lazy var headerTapGesture = UITapGestureRecognizer(target: self, action: #selector(postHeaderTapped(recognizer:)))
     //    private lazy var likeImageTapGesture = UITapGestureRecognizer(target: self, action:
@@ -82,7 +86,7 @@ final class FeedCell: UITableViewCell {
     // MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-     
+ 
         addSubviewsToCell()
         headerConstraints()
         footerConstraints()
@@ -95,6 +99,7 @@ final class FeedCell: UITableViewCell {
     }
     
     func configure(_ data: FeedCellObject) {
+        datA = data
         if data.isliked {
             footerView.likeButton.tintColor = .systemBlue
         } else {
@@ -111,12 +116,15 @@ final class FeedCell: UITableViewCell {
     }
     
     //   //MARK: - Actions
-    //    @objc private func postImageDoubleTapped(recognizer: UITapGestureRecognizer) {
-    //        guard post?.currentUserLikesThisPost == false else { return }
-    //        showLikeAnimation() { [unowned self] in
-    //            self.delegate?.postImageDoubleTapped(cell: self)
-    //        }
-    //    }
+    @objc private func postImageDoubleTapped() {
+    
+            delegate.postImageDoubleTapped(datA!)
+            UIView.animate(withDuration: 2, animations: {
+                self.heartImageView.alpha = 1
+            }) { _ in
+                self.heartImageView.alpha = 0
+            }
+        }
     //
     //    @objc private func postHeaderTapped(recognizer: UITapGestureRecognizer) {
     //        delegate?.postHeaderTapped(cell: self)
@@ -126,17 +134,17 @@ final class FeedCell: UITableViewCell {
     //        delegate?.likeTapped(cell: self)
     //    }
     //
-    //    private func showLikeAnimation(completion: @escaping () -> Void) {
-    //        UIView.animate(withDuration: 0.25, animations: {
-    //            self.heartImageView.alpha = 1
-    //        }) { _ in
-    //            UIView.animate(withDuration: 0.25, delay: 0.15, options: .curveEaseOut, animations: {
-    //                self.heartImageView.alpha = 0
-    //            }) { _ in
-    //                completion()
-    //            }
-    //        }
-    //    }
+        private func showLikeAnimation(completion: @escaping () -> Void) {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.heartImageView.alpha = 1
+            }) { _ in
+                UIView.animate(withDuration: 0.25, delay: 0.15, options: .curveEaseOut, animations: {
+                    self.heartImageView.alpha = 0
+                }) { _ in
+                    completion()
+                }
+            }
+        }
     
    //MARK: - Layout
         

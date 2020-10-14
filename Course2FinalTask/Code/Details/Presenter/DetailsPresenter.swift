@@ -11,7 +11,7 @@ import DataProvider
 
 typealias PiCtuRe = UIImage
 
-class DetailsPresenter {
+class DetailsPresenter: NSObject {
     
    private let model: DetailsModel
     weak var cell: DetailsCell?
@@ -30,19 +30,10 @@ extension DetailsPresenter: DetailsOutputProtocol {
 //        тут возможно надо сделать свич для перехода и заголовка с энамом типа тайплист заголовков
         return "Details"
     }
-    func viewIsReadyFollowing() {
-        let objects = model.following.map{
-            DetailsObject(avatar: $0.avatar, userName: $0.username)
-        }
+   
+    
+    func viewIsReady() {
         
-        cell?.configure(objects)
     }
     
-    func viewIsReadyFollowers() {
-        
-        let objects = model.followers.map {
-            DetailsObject(avatar: $0.avatar, userName: $0.username)
-        }
-        cell?.configure(objects)
-    }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 final class DetailsCell: UITableViewCell {
 
-    var objects: [DetailsObject]?
+    var object: DetailsObject?
     
     private let avatarImageView: UIImageView = {
         let avatar = UIImageView()
@@ -50,8 +50,9 @@ final class DetailsCell: UITableViewCell {
     }
     
     
-    func configure(_ objectS: [DetailsObject]) {
-       objects = objectS
+    func configure(_ objecT: DetailsObject) {
+        avatarImageView.image = objecT.avatar
+        nameLabel.text = objecT.userName
     }
     
 //    MARK: Layout

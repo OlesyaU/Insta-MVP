@@ -8,17 +8,16 @@
 
 import Foundation
 
-protocol DetailsInputProtocol{
+protocol DetailsInputProtocol: NSObject {
 //    Presenter - View
       func setupInitialState()
 }
 
 
-protocol DetailsOutputProtocol{
+protocol DetailsOutputProtocol: NSObject {
     // View -> Presenter
     var title: String { get }
-    func viewIsReadyFollowing()
-    func viewIsReadyFollowers()
+   
     
 }
 //protocol ProfileInputProtocol: NSObject {
