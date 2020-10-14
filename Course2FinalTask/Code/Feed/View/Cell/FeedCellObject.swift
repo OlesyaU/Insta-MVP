@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import DataProvider
 
 struct FeedCellObject {
-    let userAvatar: UIImage?
+    let userAvatar: Picture?
     let userName: String
     let datePost: String
     let likesCount: Int
     let description: String
     let isliked: Bool
-    let imagePost: UIImage
+    let imagePost: Picture
 }

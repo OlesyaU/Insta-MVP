@@ -9,6 +9,8 @@
 import Foundation
 import DataProvider
 
+typealias Picture = UIImage
+
 final class FeedPresenter: NSObject {
     
     weak var view: FeedViewInputProtocol?
@@ -30,15 +32,7 @@ extension FeedPresenter: FeedViewOutputProtocol {
         view?.setupInitialState()
         
         let postsArray: [FeedCellObject] = model.posts.map {
-            FeedCellObject(
-                userAvatar: $0.authorAvatar,
-                userName: $0.authorUsername,
-                datePost: makeFormattedDate(post: $0.createdTime),
-                likesCount: $0.likedByCount,
-                description: $0.description,
-                isliked: $0.currentUserLikesThisPost,
-                imagePost: $0.image
-            )
+            FeedCellObject(userAvatar: $0.authorAvatar, userName: $0.authorUsername, datePost: makeFormattedDate(post: $0.createdTime), likesCount: $0.likedByCount, description: $0.description, isliked: $0.currentUserLikesThisPost, imagePost: $0.image)
         }
         
         view?.setPosts(postsArray)
