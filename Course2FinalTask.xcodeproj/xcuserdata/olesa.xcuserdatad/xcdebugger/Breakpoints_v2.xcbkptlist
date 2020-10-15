@@ -3,4 +3,70 @@
    uuid = "67941CFE-01C5-4E13-A60A-B605B186E048"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "47DA9F77-5297-4996-972B-97900201CD21"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Course2FinalTask/Code/Feed/Presenter/FeedPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "postImageDoubleTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F892BF29-D357-4929-AB5F-69EE8E2A7426"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Course2FinalTask/Code/Feed/View/Cell/FeedCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "postImageDoubleTapped(recognizer:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F892BF29-D357-4929-AB5F-69EE8E2A7426 - cc4f8fb9db56ffae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SecondCourse_2_FinalTaskMVP.FeedCell.postImageDoubleTapped() -&gt; ()"
+                  moduleName = "SecondCourse(2)FinalTaskMVP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olesa/Desktop/CourceW2%20block%202/Course2FinalTask/Course2FinalTask/Code/Feed/View/Cell/FeedCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "F892BF29-D357-4929-AB5F-69EE8E2A7426 - 5c7f6a5094fb44f2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in SecondCourse_2_FinalTaskMVP.FeedCell.postImageDoubleTapped() -&gt; ()"
+                  moduleName = "SecondCourse(2)FinalTaskMVP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olesa/Desktop/CourceW2%20block%202/Course2FinalTask/Course2FinalTask/Code/Feed/View/Cell/FeedCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

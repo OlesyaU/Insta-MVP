@@ -11,7 +11,7 @@ import UIKit
 final class FeedCell: UITableViewCell {
     
     var delegate: FeedCellDelegate!
-    var datA: FeedCellObject?
+//    var datA: FeedCellObject?
     
     private let headerView: FeedHeader = {
         let headerView = FeedHeader(frame: .zero)
@@ -44,15 +44,18 @@ final class FeedCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-       let postImageDoubleTapGesture: UITapGestureRecognizer = {
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(postImageDoubleTapped))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(postImageDoubleTapped(recognizer:)))
             gesture.numberOfTapsRequired = 2
-            return gesture
-        }()
-        imageView.addGestureRecognizer(postImageDoubleTapGesture)
+
+        imageView.addGestureRecognizer(gesture)
         return imageView
     }()
-    
+//           let postImageDoubleTapGesture: UITapGestureRecognizer = {
+//            let gesture = UITapGestureRecognizer(target: self, action: #selector(postImageDoubleTapped(recognizer:))
+//                gesture.numberOfTapsRequired = 2
+//                return gesture
+//            }()
+//
     private let heartImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +102,7 @@ final class FeedCell: UITableViewCell {
     }
     
     func configure(_ data: FeedCellObject) {
-        datA = data
+//        datA = data
         if data.isliked {
             footerView.likeButton.tintColor = .systemBlue
         } else {
@@ -116,14 +119,13 @@ final class FeedCell: UITableViewCell {
     }
     
     //   //MARK: - Actions
-    @objc private func postImageDoubleTapped() {
-    
-            delegate.postImageDoubleTapped(datA!)
-            UIView.animate(withDuration: 2, animations: {
-                self.heartImageView.alpha = 1
-            }) { _ in
-                self.heartImageView.alpha = 0
-            }
+    @objc private func postImageDoubleTapped(recognizer: UITapGestureRecognizer){
+            print("its cell @objc private func postImageDoubleTapped")
+       
+//            delegate.postImageDoubleTapped(datA!)
+//        UIView.animate(withDuration: 1) {
+//            self.headerView.alpha = 1
+//        }
         }
     //
     //    @objc private func postHeaderTapped(recognizer: UITapGestureRecognizer) {

@@ -48,8 +48,7 @@ import UIKit
    
    // MARK: - Helpers
 
-   
-   private func addSubviewsToHeader() {
+private func addSubviewsToHeader() {
        addSubview(avatarImageView)
        addSubview(nameLabel)
        addSubview(dateLabel)

@@ -15,7 +15,7 @@ final class FeedPresenter: NSObject {
     
     weak var view: FeedViewInputProtocol?
     private let model: FeedModel
-    
+    var doubleTappedLike: ((Int, Bool)-> Void)?
     init(model: FeedModel) {
         self.model = model
     }
@@ -24,22 +24,30 @@ final class FeedPresenter: NSObject {
 // MARK: - FeedViewOutputProtocol
 extension FeedPresenter: FeedViewOutputProtocol {
     
+    
     func postImageDoubleTapped(_ post: FeedCellObject) {
         let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
         print("\(String(describing: post?.currentUserLikesThisPost)) initial value from PRESENTER postImageDoubleTapped")
+        print("\(String(describing: post?.likedByCount)) initial value from PRESENTER postImageDoubleTapped")
+        var userBool: Bool
+        let userLikesCount: Int!
         switch post!.currentUserLikesThisPost {
             case true:
 //                post?.likedByCount -= 1
-                let userBool = DataProviders.shared.postsDataProvider.unlikePost(with: post!.id)
+               userBool = DataProviders.shared.postsDataProvider.unlikePost(with: post!.id)
+                userLikesCount = post?.likedByCount
             print("\(userBool) from PRESENTER postImageDoubleTapped")
-              
+               print("\(String(describing: userLikesCount)) from PRESENTER postImageDoubleTapped")
             default:
 //                post?.likedByCount += 1
-                let userBool = DataProviders.shared.postsDataProvider.likePost(with: post!.id)
+                userBool = DataProviders.shared.postsDataProvider.likePost(with: post!.id)
+                   userLikesCount = post?.likedByCount
             print("\(userBool) from PRESENTER postImageDoubleTapped")
+             print("\(String(describing: userLikesCount)) from PRESENTER postImageDoubleTapped")
                
         }
-//        view?.setupInitialState()
+        doubleTappedLike?(userLikesCount, userBool)
+        view?.setupInitialState()
     }
     
     var title: String {
