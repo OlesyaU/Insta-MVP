@@ -9,7 +9,7 @@
 import UIKit
 
  final class FeedFooter: UIView {
- 
+     
  lazy var likesLabel: UILabel = {
            let likesLabel = UILabel(frame: .zero)
            likesLabel.font = .systemFont(ofSize: 14, weight: .semibold)
@@ -35,7 +35,6 @@ import UIKit
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "like"), for: .normal)
         button.tintColor = .lightGray
-        button.addTarget(self, action: #selector(likeTapped(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -58,10 +57,7 @@ import UIKit
        
        // MARK: - Actions
        
-       @objc private func likeTapped(sender: UIButton) {
-        self.likeButton.tintColor = .systemBlue
-           
-       }
+
 //
 //       @objc private func likesLabelTapped(recognizer: UITapGestureRecognizer) {
 //           onLikesLabelTapped?()

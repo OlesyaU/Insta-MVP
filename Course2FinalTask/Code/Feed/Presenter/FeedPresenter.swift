@@ -25,13 +25,12 @@ final class FeedPresenter: NSObject {
 // MARK: - FeedViewOutputProtocol
 extension FeedPresenter: FeedViewOutputProtocol {
     
-    func postImageDoubleTapped(_ post: FeedCellObject) {
+  func postImageDoubleTapped(_ post: FeedCellObject) {
         let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
         
         var userBool = post?.currentUserLikesThisPost
         var userLikesCount = post?.likedByCount
-        print("\(String(describing: userBool)),\(String(describing: userLikesCount)) первое значение ")
-        
+    
         switch userBool {
             case true:
                 userBool = DataProviders.shared.postsDataProvider.unlikePost(with: post!.id)
@@ -41,8 +40,6 @@ extension FeedPresenter: FeedViewOutputProtocol {
                 userBool = DataProviders.shared.postsDataProvider.likePost(with: post!.id)
                 userLikesCount! += 1
         }
-        
-        print("\( String(describing: userLikesCount)), \(String(describing: userBool)) презентер перед колбэком")
         doubleTappedLike?(userLikesCount!, userBool!)
     }
     

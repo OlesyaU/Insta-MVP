@@ -8,18 +8,17 @@
 
 import Foundation
 
-protocol FeedViewInputProtocol: class {
+protocol FeedViewInputProtocol: NSObject {
     // Presenter -> View
     func setupInitialState()
     func setPosts(_ objects: [FeedCellObject])
-      var dobTap:((Int, Bool) -> Void)? {get set}
 }
 protocol FeedCellDelegate {
     func postImageDoubleTapped(_ post: FeedCellObject)
-    var dobTap:((Int, Bool) -> Void)? {get set}
+
     
 }
-protocol FeedViewOutputProtocol: class {
+protocol FeedViewOutputProtocol: NSObject {
     // View -> Presenter
     
     var title: String { get }
@@ -28,3 +27,4 @@ protocol FeedViewOutputProtocol: class {
     var doubleTappedLike: ((Int, Bool)-> Void)? { get set }
     
 }
+

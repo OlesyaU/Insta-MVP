@@ -22,15 +22,14 @@ final class FeedCell: UITableViewCell {
     }()
     
     
-    private let footerView: FeedFooter = {
+   private lazy var footerView: FeedFooter = {
         
         let footerView = FeedFooter(frame: .zero)
         footerView.translatesAutoresizingMaskIntoConstraints = false
         footerView.isUserInteractionEnabled = true
-        
-        //        footerView.onTapLike = { [unowned self] in
-        //            self.delegate?.likeTapped(cell: self)
-        //        }
+         let likeImageTapGesture = UITapGestureRecognizer(target: self, action:
+        #selector(likeImageTapped(recognizer:)))
+        footerView.likeButton.addGestureRecognizer(likeImageTapGesture)
         //
         //        footerView.onLikesLabelTapped = { [unowned self] in
         //            self.delegate?.likesLabelTapped(cell: self)
@@ -39,7 +38,7 @@ final class FeedCell: UITableViewCell {
         return footerView
     }()
     
-    lazy var postImageView: UIImageView = {
+   private lazy var postImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
@@ -50,11 +49,7 @@ final class FeedCell: UITableViewCell {
         
         return imageView
     }()
-    //               let postImageDoubleTapGesture: UITapGestureRecognizer = {
-    //            let gesture = UITapGestureRecognizer(target: self, action: #selector(imageDoubleTapped(_ :)))
-    //                gesture.numberOfTapsRequired = 2
-    //                return gesture
-    //            }()
+    
     
     private let heartImageView: UIImageView = {
         let imageView = UIImageView()
@@ -79,7 +74,6 @@ final class FeedCell: UITableViewCell {
                 case true:
                     footerView.likeButton.tintColor = .systemBlue
                 default:
-                    print("Из cell из свойства если в ячейке\(String(describing: isLiked))")
                     footerView.likeButton.tintColor = .lightGray
             }
         }
@@ -88,9 +82,8 @@ final class FeedCell: UITableViewCell {
     
     
     //    private lazy var headerTapGesture = UITapGestureRecognizer(target: self, action: #selector(postHeaderTapped(recognizer:)))
-    //    private lazy var likeImageTapGesture = UITapGestureRecognizer(target: self, action:
-    //        #selector(likeImageTapped(recognizer:)))
-    //
+        
+    
     
     // MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -144,10 +137,10 @@ final class FeedCell: UITableViewCell {
     //        delegate?.postHeaderTapped(cell: self)
     //    }
     //
-    //    @objc private func likeImageTapped(recognizer: UITapGestureRecognizer) {
-    //        delegate?.likeTapped(cell: self)
-    //    }
-    //
+        @objc private func likeImageTapped(recognizer: UITapGestureRecognizer) {
+            delegate.postImageDoubleTapped(self.datA!)
+        }
+    
     private func showLikeAnimation() {
         UIView.animate(withDuration: 0.25, animations: {
             self.heartImageView.alpha = 1

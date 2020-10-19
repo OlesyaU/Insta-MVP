@@ -12,8 +12,7 @@ final class FeedViewController: UITableViewController {
     
     var presenter: FeedViewOutputProtocol!
     private var feedCellObjects = [FeedCellObject]()
-    private var celL: FeedCell?
-    var dobTap:((Int, Bool) -> Void)?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,21 +28,17 @@ final class FeedViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FeedCell.self), for: indexPath) as? FeedCell else { return UITableViewCell() }
-        celL = cell
         cell.delegate = self
         let userData = feedCellObjects[indexPath.row]
         cell.configure(userData)
-        
-      
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard  let cell = tableView.cellForRow(at: indexPath) as? FeedCell else {return}
-presenter.doubleTappedLike = { [weak self] int, bool in
+        presenter.doubleTappedLike = { int, bool in
             cell.likesStory(int, bool)
         }
-//        cell.likesStory(<#T##int: Int##Int#>, <#T##bool: Bool##Bool#>)
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -68,24 +63,8 @@ extension FeedViewController: FeedCellDelegate {
     
     func postImageDoubleTapped(_ post: FeedCellObject) {
         presenter.postImageDoubleTapped(post)
-//        dobtap()
     }
     
-//    private func dobtap() {
-//        presenter.doubleTappedLike = {[weak self] int, booool in
-//            guard var likes = self?.celL?.datA?.likesCount else { print("likes from cv doesn't work")
-//                return }
-//           likes = int
-//            guard var isliked = self?.celL?.datA?.isliked else { print("liked from cv doesn't work")
-//                return
-//            }
-//            self?.celL?.likesStory(int, booool)
-//            isliked = booool
-//            self.cell?.likesCount = int
-//            self?.cell.isLiked = booool
-//            print(booool, int)
-//            print(likes, isliked)
-//        }
-       
+
     }
-//}
+
