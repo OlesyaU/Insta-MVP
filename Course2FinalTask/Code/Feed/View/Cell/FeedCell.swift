@@ -66,26 +66,22 @@ final class FeedCell: UITableViewCell {
         return imageView
     }()
     
-    
-    var likesCount: Int? {
+    private var likesCount: Int? {
         didSet {
-            footerView.likesLabel.text = "Likes: \(String(describing: likesCount))"
-            print("Из cell из свойства  в ячейке \(String(describing: likesCount))")
+            guard let likesCount = likesCount else {return}
+            footerView.likesLabel.text = "Likes: \(likesCount)"
         }
     }
-    var isLiked: Bool? {
+    
+    private var isLiked: Bool? {
         didSet {
             switch isLiked! {
                 case true:
-                    print("Из cell из свойства в ячейке \(String(describing: isLiked))")
-                    
                     footerView.likeButton.tintColor = .systemBlue
-                
                 default:
                     print("Из cell из свойства если в ячейке\(String(describing: isLiked))")
                     footerView.likeButton.tintColor = .lightGray
             }
-            
         }
     }
     
@@ -123,9 +119,12 @@ final class FeedCell: UITableViewCell {
         
         postImageView.image = data.imagePost
     }
+   func likesStory(_ int: Int, _ bool: Bool) {
+        likesCount = int
+        isLiked = bool
+    }
     
     private func colorHeart(_ data: FeedCellObject) {
-        //        print("\(data) from colorHeart")
         if data.isliked {
             footerView.likeButton.tintColor = .systemBlue
         } else {
@@ -138,14 +137,7 @@ final class FeedCell: UITableViewCell {
     @objc private func imageDoubleTapped(_ recognizer: UITapGestureRecognizer) {
         delegate.postImageDoubleTapped(self.datA!)
         showLikeAnimation()
-        self.delegate.dobTap? = { [weak self] int,bool in
-            self?.likesCount = int
-            self?.isLiked = bool
-            
-            
-        }
-        
-    }
+}
     
     //
     //    @objc private func postHeaderTapped(recognizer: UITapGestureRecognizer) {
