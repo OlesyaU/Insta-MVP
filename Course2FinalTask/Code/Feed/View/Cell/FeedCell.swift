@@ -21,7 +21,7 @@ final class FeedCell: UITableViewCell {
         return headerView
     }()
     
-   
+    
     private let footerView: FeedFooter = {
         
         let footerView = FeedFooter(frame: .zero)
@@ -47,15 +47,15 @@ final class FeedCell: UITableViewCell {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(imageDoubleTapped(_:)))
         gesture.numberOfTapsRequired = 2
         imageView.addGestureRecognizer(gesture)
-       
+        
         return imageView
     }()
-//               let postImageDoubleTapGesture: UITapGestureRecognizer = {
-//            let gesture = UITapGestureRecognizer(target: self, action: #selector(imageDoubleTapped(_ :)))
-//                gesture.numberOfTapsRequired = 2
-//                return gesture
-//            }()
-
+    //               let postImageDoubleTapGesture: UITapGestureRecognizer = {
+    //            let gesture = UITapGestureRecognizer(target: self, action: #selector(imageDoubleTapped(_ :)))
+    //                gesture.numberOfTapsRequired = 2
+    //                return gesture
+    //            }()
+    
     private let heartImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,28 +67,29 @@ final class FeedCell: UITableViewCell {
     }()
     
     
-     var likesCount: Int? {
+    var likesCount: Int? {
         didSet {
             footerView.likesLabel.text = "Likes: \(String(describing: likesCount))"
-               print("Из cell из свойства  в ячейке \(likesCount)")
+            print("Из cell из свойства  в ячейке \(String(describing: likesCount))")
         }
     }
-     var isLiked: Bool? {
+    var isLiked: Bool? {
         didSet {
-            if isLiked! {
-                print("Из cell из свойства false в ячейке \(isLiked)")
-                  footerView.likeButton.tintColor = .lightGray
+            switch isLiked! {
+                case true:
+                    print("Из cell из свойства в ячейке \(String(describing: isLiked))")
+                    
+                    footerView.likeButton.tintColor = .systemBlue
                 
-            } else {
-                  print("Из cell из свойства если тру в ячейке\(isLiked)")
-                footerView.likeButton.tintColor = .systemBlue
-              
+                default:
+                    print("Из cell из свойства если в ячейке\(String(describing: isLiked))")
+                    footerView.likeButton.tintColor = .lightGray
             }
-           
+            
         }
     }
     
-        
+    
     
     //    private lazy var headerTapGesture = UITapGestureRecognizer(target: self, action: #selector(postHeaderTapped(recognizer:)))
     //    private lazy var likeImageTapGesture = UITapGestureRecognizer(target: self, action:
@@ -98,7 +99,7 @@ final class FeedCell: UITableViewCell {
     // MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
- 
+        
         addSubviewsToCell()
         headerConstraints()
         footerConstraints()
@@ -111,7 +112,7 @@ final class FeedCell: UITableViewCell {
     }
     
     func configure(_ data: FeedCellObject) {
-datA = data
+        datA = data
         colorHeart(data)
         headerView.nameLabel.text = data.userName
         headerView.avatarImageView.image = data.userAvatar
@@ -124,6 +125,7 @@ datA = data
     }
     
     private func colorHeart(_ data: FeedCellObject) {
+        //        print("\(data) from colorHeart")
         if data.isliked {
             footerView.likeButton.tintColor = .systemBlue
         } else {
@@ -132,27 +134,17 @@ datA = data
     }
     
     //   //MARK: - Actions
-   
+    
     @objc private func imageDoubleTapped(_ recognizer: UITapGestureRecognizer) {
-//self.colorHeart(self.datA!)
-//     delegate.dobTap? = { [weak self] int, bool in
-//                      self?.likesCount = int
-//                      print(self?.likesCount = int)
-//                      self?.isLiked = bool
-//       print("\(self?.isLiked = bool) from cell")
-//                  }
-        showLikeAnimation {
+        delegate.postImageDoubleTapped(self.datA!)
+        showLikeAnimation()
+        self.delegate.dobTap? = { [weak self] int,bool in
+            self?.likesCount = int
+            self?.isLiked = bool
             
-            self.delegate.postImageDoubleTapped(self.datA!)
-//            self.delegate.dobTap? = { [weak self] int, bool in
-//                self?.likesCount = int
-//                print(self?.likesCount = int)
-//                self?.isLiked = bool
-// print("\(self?.isLiked = bool) from cell")
-//            }
-                    }
-//        colorHeart(datA!)
-
+            
+        }
+        
     }
     
     //
@@ -164,20 +156,18 @@ datA = data
     //        delegate?.likeTapped(cell: self)
     //    }
     //
-        private func showLikeAnimation(completion: @escaping () -> Void) {
-            UIView.animate(withDuration: 0.25, animations: {
-                self.heartImageView.alpha = 1
-            }) { _ in
-                UIView.animate(withDuration: 0.25, delay: 0.15, options: .curveEaseOut, animations: {
-                    self.heartImageView.alpha = 0
-                }) { _ in
-                    completion()
-                }
-            }
+    private func showLikeAnimation() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.heartImageView.alpha = 1
+        }) { _ in
+            UIView.animate(withDuration: 0.25, delay: 0.15, options: .curveEaseOut, animations: {
+                self.heartImageView.alpha = 0
+            })
         }
+    }
     
-   //MARK: - Layout
-        
+    //MARK: - Layout
+    
     private func addSubviewsToCell() {
         contentView.addSubview(headerView)
         contentView.addSubview(footerView)

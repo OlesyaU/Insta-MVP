@@ -12,6 +12,7 @@ protocol FeedViewInputProtocol: class {
     // Presenter -> View
     func setupInitialState()
     func setPosts(_ objects: [FeedCellObject])
+      var dobTap:((Int, Bool) -> Void)? {get set}
 }
 protocol FeedCellDelegate {
     func postImageDoubleTapped(_ post: FeedCellObject)
@@ -25,5 +26,5 @@ protocol FeedViewOutputProtocol: class {
     func viewIsReady()
     func postImageDoubleTapped(_ post: FeedCellObject)
     var doubleTappedLike: ((Int, Bool)-> Void)? { get set }
-    var dob:((_ post: FeedCellObject)-> Void)? { get set }
+    
 }

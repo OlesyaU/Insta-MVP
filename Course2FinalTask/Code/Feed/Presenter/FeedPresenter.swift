@@ -16,7 +16,7 @@ final class FeedPresenter: NSObject {
     weak var view: FeedViewInputProtocol?
     private let model: FeedModel
     var doubleTappedLike: ((Int, Bool)-> Void)?
-    var dob:((_ post: FeedCellObject)-> Void)?
+
     init(model: FeedModel) {
         self.model = model
     }
@@ -25,31 +25,25 @@ final class FeedPresenter: NSObject {
 // MARK: - FeedViewOutputProtocol
 extension FeedPresenter: FeedViewOutputProtocol {
     
-    
     func postImageDoubleTapped(_ post: FeedCellObject) {
         let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
         
         var userBool = post?.currentUserLikesThisPost
         var userLikesCount = post?.likedByCount
-        print("\(userBool)) первое значение ")
-        print("\(userLikesCount)  первое значение ")
+        print("\(String(describing: userBool)),\(String(describing: userLikesCount)) первое значение ")
+        
         switch userBool {
             case true:
                 userBool = DataProviders.shared.postsDataProvider.unlikePost(with: post!.id)
                 userBool?.toggle()
                 userLikesCount! -= 1
-            doubleTappedLike?(userLikesCount!, userBool!)
             default:
-                
                 userBool = DataProviders.shared.postsDataProvider.likePost(with: post!.id)
                 userLikesCount! += 1
-            doubleTappedLike?(userLikesCount!, userBool!)
         }
-        print("\(userBool) презентер перед колбэком")
-        print("\( userLikesCount) презентер перед колбэком")
-//        doubleTappedLike?(userLikesCount!, userBool!)
-      let mnj =   FeedCellObject(userAvatar: post!.authorAvatar, userName: post!.authorUsername, datePost: makeFormattedDate(post: post!.createdTime), likesCount: userLikesCount!, description: post!.description, isliked: userBool!, imagePost: post!.image, postId: post!.id, userID: post!.author)
         
+        print("\( String(describing: userLikesCount)), \(String(describing: userBool)) презентер перед колбэком")
+        doubleTappedLike?(userLikesCount!, userBool!)
     }
     
     var title: String {
