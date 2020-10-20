@@ -17,7 +17,8 @@ final class FeedCell: UITableViewCell {
         let headerView = FeedHeader(frame: .zero)
         headerView.translatesAutoresizingMaskIntoConstraints = false
         headerView.isUserInteractionEnabled = true
-        //        headerView.addGestureRecognizer(headerTapGesture)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(postHeaderTapped(recognizer:)))
+        headerView.addGestureRecognizer(gesture)
         return headerView
     }()
     
@@ -27,15 +28,10 @@ final class FeedCell: UITableViewCell {
         let footerView = FeedFooter(frame: .zero)
         footerView.translatesAutoresizingMaskIntoConstraints = false
         footerView.isUserInteractionEnabled = true
-         let likeImageTapGesture = UITapGestureRecognizer(target: self, action:
-        #selector(likeImageTapped(recognizer:)))
-        footerView.likeButton.addGestureRecognizer(likeImageTapGesture)
-        //
-        //        footerView.onLikesLabelTapped = { [unowned self] in
-        //            self.delegate?.likesLabelTapped(cell: self)
-        //        }
-        
-        return footerView
+    footerView.likeButton.addTarget(self, action:   #selector(likeButtonTapped(recognizer:)), for: .touchUpInside)
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(likeLabelTapped(recognizer:)))
+   footerView.likesLabel.addGestureRecognizer(gesture)
+return footerView
     }()
     
    private lazy var postImageView: UIImageView = {
@@ -79,10 +75,6 @@ final class FeedCell: UITableViewCell {
         }
     }
     
-    
-    
-    //    private lazy var headerTapGesture = UITapGestureRecognizer(target: self, action: #selector(postHeaderTapped(recognizer:)))
-        
     
     
     // MARK: - Life cycle
@@ -132,14 +124,18 @@ final class FeedCell: UITableViewCell {
         showLikeAnimation()
 }
     
-    //
-    //    @objc private func postHeaderTapped(recognizer: UITapGestureRecognizer) {
-    //        delegate?.postHeaderTapped(cell: self)
-    //    }
-    //
-        @objc private func likeImageTapped(recognizer: UITapGestureRecognizer) {
+    
+        @objc private func postHeaderTapped(recognizer: UITapGestureRecognizer) {
+            delegate.headerTapped(self.datA!)
+            delegate.profileTap()
+        }
+    
+        @objc private func likeButtonTapped(recognizer: UITapGestureRecognizer) {
             delegate.postImageDoubleTapped(self.datA!)
         }
+    @objc private func likeLabelTapped(recognizer: UITapGestureRecognizer) {
+        delegate.likeLabelTapped(self.datA!)
+           }
     
     private func showLikeAnimation() {
         UIView.animate(withDuration: 0.25, animations: {

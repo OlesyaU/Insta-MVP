@@ -11,25 +11,21 @@ import UIKit
 
 class DetailsController: UITableViewController {
     
-    typealias ListType = ProfileViewController.ListType
-//
-    var presenter: DetailsOutputProtocol!
-    private var users: [DetailsObject]
-//    private var objects =  [ProfileHeaderObject]()
+var presenter: DetailsOutputProtocol!
+    private var users = [DetailsObject]()
+    
+    init(){
+        super.init(style: .plain)
+    }
 
-//    init(objects: [ProfileModel], type: ListType) {
-//        self.objects = objects
-//        super.init(style: .plain)
-//
-//
-//    }
-//
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     // MARK: - Table view data source
@@ -55,7 +51,7 @@ class DetailsController: UITableViewController {
 extension DetailsController: DetailsInputProtocol {
     
     func setupInitialState() {
-//              title = type.title
+        title = presenter.title
                 tableView.separatorStyle = .none
             tableView.register(DetailsCell.self, forCellReuseIdentifier: String(describing: DetailsCell.self))
     }

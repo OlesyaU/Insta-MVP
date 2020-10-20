@@ -53,6 +53,7 @@ final class DetailsCell: UITableViewCell {
     func configure(_ objecT: DetailsObject) {
         avatarImageView.image = objecT.avatar
         nameLabel.text = objecT.userName
+        
     }
     
 //    MARK: Layout

@@ -11,13 +11,15 @@ import Foundation
 protocol DetailsInputProtocol: NSObject {
 //    Presenter - View
       func setupInitialState()
+   func setUsers(_ userses: [DetailsObject])
 }
 
 
 protocol DetailsOutputProtocol: NSObject {
     // View -> Presenter
     var title: String { get }
-   
+    func viewIsReadyFollowers()
+     func viewIsReadyFollowing() 
     
 }
 //protocol ProfileInputProtocol: NSObject {

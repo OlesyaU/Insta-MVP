@@ -16,7 +16,6 @@ import UIKit
            likesLabel.translatesAutoresizingMaskIntoConstraints = false
            likesLabel.textColor = .black
            likesLabel.isUserInteractionEnabled = true
-//           likesLabel.addGestureRecognizer(tapGesture)
            return likesLabel
        }()
        
@@ -39,8 +38,6 @@ import UIKit
         return button
     }()
        
-//       private lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(likesLabelTapped(recognizer:)))
-       
        override init(frame: CGRect) {
            super.init(frame: frame)
            
@@ -56,13 +53,7 @@ import UIKit
        }
        
        // MARK: - Actions
-       
-
-//
-//       @objc private func likesLabelTapped(recognizer: UITapGestureRecognizer) {
-//           onLikesLabelTapped?()
-//       }
-//
+ 
        private func addSubviews() {
            addSubview(likeButton)
            addSubview(likesLabel)

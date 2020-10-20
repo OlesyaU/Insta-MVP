@@ -15,8 +15,9 @@ protocol FeedViewInputProtocol: NSObject {
 }
 protocol FeedCellDelegate {
     func postImageDoubleTapped(_ post: FeedCellObject)
-
-    
+    func likeLabelTapped(_ post: FeedCellObject)
+    func headerTapped(_ post: FeedCellObject)
+     func profileTap()
 }
 protocol FeedViewOutputProtocol: NSObject {
     // View -> Presenter
@@ -25,6 +26,9 @@ protocol FeedViewOutputProtocol: NSObject {
     func viewIsReady()
     func postImageDoubleTapped(_ post: FeedCellObject)
     var doubleTappedLike: ((Int, Bool)-> Void)? { get set }
-    
+    func likeLabelTapped(_ post: FeedCellObject)
+    var likesLabelTapped: (([Any]) -> Void)? { get set }
+    func headerTapped(_ post: FeedCellObject)
+      var headerTapped: ((ProfileHeaderObject, [ProfileCellObject]) -> Void)? { get set }
 }
 

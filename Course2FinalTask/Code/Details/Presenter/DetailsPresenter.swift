@@ -14,7 +14,7 @@ typealias PiCtuRe = UIImage
 class DetailsPresenter: NSObject {
     
    private let model: DetailsModel
-    weak var cell: DetailsCell?
+    weak var view: DetailsInputProtocol?
     
     init(model: DetailsModel) {
         self.model = model
@@ -24,6 +24,14 @@ class DetailsPresenter: NSObject {
     
 }
 extension DetailsPresenter: DetailsOutputProtocol {
+    func viewIsReadyFollowing() {
+        view?.setupInitialState()
+        let following = model.following.map{
+            DetailsObject(avatar: $0.avatar, userName: $0.username, userID: $0.id)
+        }
+        view?.setUsers(following)
+    }
+    
     
     
     var title: String {
@@ -31,9 +39,13 @@ extension DetailsPresenter: DetailsOutputProtocol {
         return "Details"
     }
    
-    
-    func viewIsReady() {
-        
+func viewIsReadyFollowers() {
+        view?.setupInitialState()
+        let followers = model.followers.map {
+            DetailsObject(avatar: $0.avatar, userName: $0.username, userID: $0.id)
+        }
+        view?.setUsers(followers)
+       
     }
     
 }

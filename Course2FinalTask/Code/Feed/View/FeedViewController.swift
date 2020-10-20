@@ -12,6 +12,8 @@ final class FeedViewController: UITableViewController {
     
     var presenter: FeedViewOutputProtocol!
     private var feedCellObjects = [FeedCellObject]()
+    private var likesUsers = [DetailsObject]()
+//    private  var user: ProfileHeaderObject?
 
     
     override func viewDidLoad() {
@@ -39,6 +41,7 @@ final class FeedViewController: UITableViewController {
         presenter.doubleTappedLike = { int, bool in
             cell.likesStory(int, bool)
         }
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -60,9 +63,34 @@ extension FeedViewController: FeedViewInputProtocol {
 }
 
 extension FeedViewController: FeedCellDelegate {
+    func headerTapped(_ post: FeedCellObject) {
+        presenter.headerTapped(post)
+        profileTap()
+    }
+    
+  func profileTap() {
+        let profile = ProfileViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        
+//        presenter.headerTapped = { obj, posts in
+//            
+//            profile.presenter.viewIsReady()
+//            profile.setHeader(obj)
+//            profile.setPosts(posts)
+//        }
+        navigationController?.pushViewController(profile, animated: true)
+        
+    }
     
     func postImageDoubleTapped(_ post: FeedCellObject) {
         presenter.postImageDoubleTapped(post)
+    }
+    func likeLabelTapped(_ post: FeedCellObject) {
+        let detailsVC = DetailsController()
+       
+        navigationController?.pushViewController(detailsVC, animated: true)
+        presenter.likeLabelTapped(post)
+        
+
     }
     
 

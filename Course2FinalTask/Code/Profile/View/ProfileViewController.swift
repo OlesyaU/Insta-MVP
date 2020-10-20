@@ -10,23 +10,23 @@ import UIKit
 
  final class ProfileViewController: UICollectionViewController {
     
-    enum ListType {
-           case followers
-           case following
-           case likes
-           
-           var title: String {
-               switch self {
-               case .likes: return "Likes"
-               case .following: return "Following"
-               case .followers: return "Followers"
-               }
-           }
-       }
+//    enum ListType {
+//           case followers
+//           case following
+//           case likes
+//           
+//           var title: String {
+//               switch self {
+//               case .likes: return "Likes"
+//               case .following: return "Following"
+//               case .followers: return "Followers"
+//               }
+//           }
+//       }
     
     var presenter: ProfileOutputProtocol!
-    private var profileFeedPosts = [ProfileCellObject]()
-    private var profileHeader: ProfileHeaderObject?
+   var profileFeedPosts = [ProfileCellObject]()
+  var profileHeader: ProfileHeaderObject?
     private let itemsPerRow: CGFloat = 3
     private let sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
     

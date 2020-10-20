@@ -16,7 +16,9 @@ final class FeedPresenter: NSObject {
     weak var view: FeedViewInputProtocol?
     private let model: FeedModel
     var doubleTappedLike: ((Int, Bool)-> Void)?
-
+    var likesLabelTapped: (([Any]) -> Void)?
+    var headerTapped: ((ProfileHeaderObject, [ProfileCellObject]) -> Void)?
+    
     init(model: FeedModel) {
         self.model = model
     }
@@ -25,9 +27,41 @@ final class FeedPresenter: NSObject {
 // MARK: - FeedViewOutputProtocol
 extension FeedPresenter: FeedViewOutputProtocol {
     
-  func postImageDoubleTapped(_ post: FeedCellObject) {
-        let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
+    
+    
+    func headerTapped(_ post: FeedCellObject) {
+        let post = model.posts.first{
+            $0.id == post.postId as! Post.Identifier
+        }
         
+        let profile = ProfileModel()
+        let currentUserID = profile.currentUser.id
+        let userPostID = post?.author
+        if userPostID == currentUserID {
+            let objectForProf = ProfileHeaderObject(fullName: profile.currentUser.fullName, followers: profile.followers.count, following: profile.follows.count, avatar: profile.currentUser.avatar, userName: profile.userName, userId: currentUserID)
+            
+            let arr = profile.currentUserPosts.map{
+                ProfileCellObject(image: $0.image)
+            }
+            headerTapped!(objectForProf, arr)
+        }
+    }
+    
+    func likeLabelTapped(_ post: FeedCellObject) {
+         let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
+      var likers = DataProviders.shared.postsDataProvider.usersLikedPost(with: post!.id)
+        guard let likerS = likers else {return}
+       
+        
+        
+        likesLabelTapped!([likerS])
+        
+    }
+    
+    
+  func postImageDoubleTapped(_ post: FeedCellObject) {
+     let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
+  
         var userBool = post?.currentUserLikesThisPost
         var userLikesCount = post?.likedByCount
     

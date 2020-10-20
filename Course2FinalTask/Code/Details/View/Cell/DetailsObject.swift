@@ -11,4 +11,5 @@ import Foundation
 struct DetailsObject {
     let avatar: PiCtuRe?
     let userName: String
+    let userID: Any
 }

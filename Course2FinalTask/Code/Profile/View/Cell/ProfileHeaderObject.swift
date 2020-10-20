@@ -14,5 +14,5 @@ struct ProfileHeaderObject {
     let following: Int
     let avatar: Picturee?
     let userName: String
-
+    let userId: Any
 }

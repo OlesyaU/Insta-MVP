@@ -30,7 +30,7 @@ extension ProfilePresenter: ProfileOutputProtocol {
             ProfileCellObject(image: $0.image)
         }
         let modelUser = model.currentUser
-        let user = ProfileHeaderObject(fullName: modelUser.fullName, followers: modelUser.followedByCount, following: modelUser.followsCount, avatar: modelUser.avatar, userName: modelUser.username)
+        let user = ProfileHeaderObject(fullName: modelUser.fullName, followers: modelUser.followedByCount, following: modelUser.followsCount, avatar: modelUser.avatar, userName: modelUser.username, userId: model.currentUser.id)
         
         controller?.setHeader(user)
         controller?.setPosts(arrayPostImage)
