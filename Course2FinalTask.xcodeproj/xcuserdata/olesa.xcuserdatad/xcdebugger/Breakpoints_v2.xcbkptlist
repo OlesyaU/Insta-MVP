@@ -3,4 +3,70 @@
    uuid = "67941CFE-01C5-4E13-A60A-B605B186E048"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F7AC6A31-4EAC-4308-8995-CD2179E7A30E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Course2FinalTask/Code/Feed/Presenter/FeedPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "postImageDoubleTapped(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F7AC6A31-4EAC-4308-8995-CD2179E7A30E - 10dcab9cfd7a704e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SecondCourse_2_FinalTaskMVP.FeedPresenter.postImageDoubleTapped(SecondCourse_2_FinalTaskMVP.FeedCellObject) -&gt; ()"
+                  moduleName = "SecondCourse(2)FinalTaskMVP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olesa/Desktop/Insta-MVP-master/Course2FinalTask/Code/Feed/Presenter/FeedPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "F7AC6A31-4EAC-4308-8995-CD2179E7A30E - d4bab4c09eed597b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (DataProvider.Post) -&gt; Swift.Bool in SecondCourse_2_FinalTaskMVP.FeedPresenter.postImageDoubleTapped(SecondCourse_2_FinalTaskMVP.FeedCellObject) -&gt; ()"
+                  moduleName = "SecondCourse(2)FinalTaskMVP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olesa/Desktop/Insta-MVP-master/Course2FinalTask/Code/Feed/Presenter/FeedPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "157">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB6A410B-2E05-453D-B772-7CA2F51E86D6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Course2FinalTask/Code/Feed/Presenter/FeedPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "likeLabelTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

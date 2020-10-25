@@ -15,8 +15,7 @@ import DataProvider
         return DataProviders.shared.postsDataProvider.feed()
     }
     
-    
-    
+   
 }
 
     

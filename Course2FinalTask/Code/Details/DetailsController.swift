@@ -12,7 +12,7 @@ import UIKit
 class DetailsController: UITableViewController {
     
 var presenter: DetailsOutputProtocol!
-    private var users = [DetailsObject]()
+     var users = [DetailsObject]()
     
     init(){
         super.init(style: .plain)
@@ -52,6 +52,8 @@ extension DetailsController: DetailsInputProtocol {
     
     func setupInitialState() {
         title = presenter.title
+//        tableView.dataSource
+//        tableView.delegate = self
                 tableView.separatorStyle = .none
             tableView.register(DetailsCell.self, forCellReuseIdentifier: String(describing: DetailsCell.self))
     }

@@ -27,17 +27,16 @@ final class FeedPresenter: NSObject {
 // MARK: - FeedViewOutputProtocol
 extension FeedPresenter: FeedViewOutputProtocol {
     
-    
-    
+   
     func headerTapped(_ post: FeedCellObject) {
-        let post = model.posts.first{
-            $0.id == post.postId as! Post.Identifier
-        }
+//        let post = model.posts.first{
+//            $0.id == post.postId as! Post.Identifier
+//        }
         
         let profile = ProfileModel()
         let currentUserID = profile.currentUser.id
-        let userPostID = post?.author
-        if userPostID == currentUserID {
+        let userPostID = post.userID
+        if userPostID as! User.Identifier == currentUserID {
             let objectForProf = ProfileHeaderObject(fullName: profile.currentUser.fullName, followers: profile.followers.count, following: profile.follows.count, avatar: profile.currentUser.avatar, userName: profile.userName, userId: currentUserID)
             
             let arr = profile.currentUserPosts.map{
@@ -48,33 +47,55 @@ extension FeedPresenter: FeedViewOutputProtocol {
     }
     
     func likeLabelTapped(_ post: FeedCellObject) {
-         let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
-      var likers = DataProviders.shared.postsDataProvider.usersLikedPost(with: post!.id)
+//         let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
+        let likers = DataProviders.shared.postsDataProvider.usersLikedPost(with: post.postId as! Post.Identifier)
         guard let likerS = likers else {return}
-       
+        print(likerS)
+        
+//        if  likesLabelTapped != nil {
+//            likesLabelTapped!(likerS)
+            let nbhy = likerS.compactMap {
+                DataProviders.shared.usersDataProvider.user(with: $0)
+//                DetailsObject(avatar: nhjjn.avatar, userName: nhjjn.username, userID: nhjjn.id)
+            }
+      likesLabelTapped!(nbhy)
+        }
         
         
-        likesLabelTapped!([likerS])
-        
-    }
+//    }
     
     
   func postImageDoubleTapped(_ post: FeedCellObject) {
      let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
-  
-        var userBool = post?.currentUserLikesThisPost
-        var userLikesCount = post?.likedByCount
-    
-        switch userBool {
+    print(post?.currentUserLikesThisPost)
+      print(post?.likedByCount)
+    var userBool = post?.currentUserLikesThisPost
+    var userLikesCount = post?.likedByCount
+
+    switch post?.currentUserLikesThisPost {
             case true:
-                userBool = DataProviders.shared.postsDataProvider.unlikePost(with: post!.id)
+                 
+                DataProviders.shared.postsDataProvider.unlikePost(with: post!.id)
+                DataProviders.shared.postsDataProvider.usersLikedPost(with: post!.id)?.count
                 userBool?.toggle()
                 userLikesCount! -= 1
+              print(post?.currentUserLikesThisPost)
+                print(post?.likedByCount)
+        
+//    print(userBool)
             default:
-                userBool = DataProviders.shared.postsDataProvider.likePost(with: post!.id)
+              DataProviders.shared.postsDataProvider.likePost(with: post!.id)
+               DataProviders.shared.postsDataProvider.usersLikedPost(with: post!.id)?.count
+//                userBool =
                 userLikesCount! += 1
+                print(post?.currentUserLikesThisPost)
+          print(post?.likedByCount)
+//        зкште(Э\(гыукИщщд) 'nj .pth,ek bp afkcf@)
         }
-        doubleTappedLike?(userLikesCount!, userBool!)
+      print(post?.currentUserLikesThisPost)
+      print(post?.likedByCount)
+          print("\(userBool) \(userLikesCount ) это в конце метода ")
+//        doubleTappedLike?(userLikesCount!, userBool!)
     }
     
     var title: String {
@@ -98,5 +119,10 @@ extension FeedPresenter: FeedViewOutputProtocol {
         formatter.doesRelativeDateFormatting = true
         
         return formatter.string(from: post)
+    }
+    private func checkPost(_ post: FeedCellObject) -> Bool {
+        if model.posts.first(where: { $0.id == post.postId as! Post.Identifier}) != nil {
+        return true
+        } else {return false}
     }
 }

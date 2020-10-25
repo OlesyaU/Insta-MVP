@@ -83,13 +83,18 @@ extension FeedViewController: FeedCellDelegate {
     
     func postImageDoubleTapped(_ post: FeedCellObject) {
         presenter.postImageDoubleTapped(post)
+        
+        
     }
     func likeLabelTapped(_ post: FeedCellObject) {
         let detailsVC = DetailsController()
-       
+
         navigationController?.pushViewController(detailsVC, animated: true)
-        presenter.likeLabelTapped(post)
-        
+
+        presenter.likesLabelTapped = { users in
+
+            
+        }
 
     }
     
