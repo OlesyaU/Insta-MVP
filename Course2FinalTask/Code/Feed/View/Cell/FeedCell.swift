@@ -104,6 +104,7 @@ return footerView
         
         postImageView.image = data.imagePost
     }
+    
    func likesStory(_ int: Int, _ bool: Bool) {
         likesCount = int
         isLiked = bool
@@ -122,6 +123,7 @@ return footerView
     @objc private func imageDoubleTapped(_ recognizer: UITapGestureRecognizer) {
         delegate.postImageDoubleTapped(self.datA!)
         showLikeAnimation()
+       
 }
     
     

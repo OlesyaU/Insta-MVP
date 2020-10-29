@@ -65,37 +65,24 @@ extension FeedPresenter: FeedViewOutputProtocol {
 //    }
     
     
-  func postImageDoubleTapped(_ post: FeedCellObject) {
-     let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
-    print(post?.currentUserLikesThisPost)
-      print(post?.likedByCount)
-    var userBool = post?.currentUserLikesThisPost
-    var userLikesCount = post?.likedByCount
-
-    switch post?.currentUserLikesThisPost {
-            case true:
-                 
-                DataProviders.shared.postsDataProvider.unlikePost(with: post!.id)
-                DataProviders.shared.postsDataProvider.usersLikedPost(with: post!.id)?.count
-                userBool?.toggle()
-                userLikesCount! -= 1
-              print(post?.currentUserLikesThisPost)
-                print(post?.likedByCount)
-        
-//    print(userBool)
-            default:
-              DataProviders.shared.postsDataProvider.likePost(with: post!.id)
-               DataProviders.shared.postsDataProvider.usersLikedPost(with: post!.id)?.count
-//                userBool =
-                userLikesCount! += 1
-                print(post?.currentUserLikesThisPost)
-          print(post?.likedByCount)
-//        зкште(Э\(гыукИщщд) 'nj .pth,ek bp afkcf@)
+    func postImageDoubleTapped(_ post: FeedCellObject) {
+        if let post = model.posts.first(where: { $0.id == post.postId as! Post.Identifier }) {
+            var userBool = post.currentUserLikesThisPost
+            var userLikesCount = post.likedByCount
+            switch userBool {
+                case true:
+                    userBool = DataProviders.shared.postsDataProvider.unlikePost(with: post.id)
+                    userLikesCount = DataProviders.shared.postsDataProvider.usersLikedPost(with: post.id)!.count
+                    userBool.toggle()
+                default:
+                    userBool = DataProviders.shared.postsDataProvider.likePost(with: post.id)
+                    userLikesCount = DataProviders.shared.postsDataProvider.usersLikedPost(with: post.id)!.count
+                
+            }
+            
+            print("\(String(describing: userBool)) \(String(describing: userLikesCount)) в конце метода ")
+            doubleTappedLike?(userLikesCount, userBool)
         }
-      print(post?.currentUserLikesThisPost)
-      print(post?.likedByCount)
-          print("\(userBool) \(userLikesCount ) это в конце метода ")
-//        doubleTappedLike?(userLikesCount!, userBool!)
     }
     
     var title: String {
@@ -120,9 +107,9 @@ extension FeedPresenter: FeedViewOutputProtocol {
         
         return formatter.string(from: post)
     }
-    private func checkPost(_ post: FeedCellObject) -> Bool {
-        if model.posts.first(where: { $0.id == post.postId as! Post.Identifier}) != nil {
-        return true
-        } else {return false}
-    }
+//    private func checkPost(_ post: FeedCellObject) -> Bool {
+//        if model.posts.first(where: { $0.id == post.postId as! Post.Identifier}) != nil {
+//        return true
+//        } else {return false}
+//    }
 }
