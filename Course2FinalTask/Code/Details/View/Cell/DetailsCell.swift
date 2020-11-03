@@ -9,7 +9,8 @@
 import UIKit
 
 final class DetailsCell: UITableViewCell {
-
+    
+    var delegate: DetailsCellDelegate!
     var object: DetailsObject?
     
     private let avatarImageView: UIImageView = {
@@ -34,7 +35,7 @@ final class DetailsCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = .orange
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.groupTableViewBackground
+//        view.backgroundColor = UIColor.groupTableViewBackground
         return view
     }()
     
@@ -51,8 +52,10 @@ final class DetailsCell: UITableViewCell {
     
     
     func configure(_ objecT: DetailsObject) {
+        object = objecT
         avatarImageView.image = objecT.avatar
         nameLabel.text = objecT.userName
+        
         
     }
     

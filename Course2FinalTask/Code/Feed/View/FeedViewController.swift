@@ -12,14 +12,14 @@ final class FeedViewController: UITableViewController {
     
     var presenter: FeedViewOutputProtocol!
     private var feedCellObjects = [FeedCellObject]()
-    private var likesUsers = [DetailsObject]()
+    var likelabelTap: (([DetailsObject]) -> Void)?
+//    private var likesUsers = [DetailsObject]()
 //    private  var user: ProfileHeaderObject?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        presenter.viewIsReady()
+       presenter.viewIsReady()
     }
     
     // MARK: - Table view data source
@@ -63,41 +63,35 @@ extension FeedViewController: FeedViewInputProtocol {
 }
 
 extension FeedViewController: FeedCellDelegate {
+    
     func headerTapped(_ post: FeedCellObject) {
-        presenter.headerTapped(post)
-        profileTap()
+//        presenter.headerTapped(post)
+//        profileTap()
     }
     
   func profileTap() {
         let profile = ProfileViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        
-//        presenter.headerTapped = { obj, posts in
-//            
-//            profile.presenter.viewIsReady()
-//            profile.setHeader(obj)
-//            profile.setPosts(posts)
-//        }
         navigationController?.pushViewController(profile, animated: true)
         
     }
     
     func postImageDoubleTapped(_ post: FeedCellObject) {
         presenter.postImageDoubleTapped(post)
+      
         
-        
-    }
-    func likeLabelTapped(_ post: FeedCellObject) {
-        let detailsVC = DetailsController()
-
-        navigationController?.pushViewController(detailsVC, animated: true)
-
-        presenter.likesLabelTapped = { users in
-
-            
-        }
-
     }
     
-
+    func likeLabelTapped(_ post: FeedCellObject) {
+  
+        let detailsVC = DetailsController()
+        presenter.likeLabelTapped(post)
+//       presenter.likesLabelTapped = { usekrs in
+//                detailsVC.users = usekrs
+//                print("users из метода фидконтроллера likelabeltapped \(detailsVC.users.count)")
+//         }
+         navigationController?.pushViewController(detailsVC, animated: true)
+    }
+    
+  
     }
 

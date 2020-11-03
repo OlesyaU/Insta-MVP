@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol FeedViewInputProtocol: NSObject {
+protocol FeedViewInputProtocol: class {
     // Presenter -> View
     func setupInitialState()
     func setPosts(_ objects: [FeedCellObject])
@@ -17,9 +17,11 @@ protocol FeedCellDelegate {
     func postImageDoubleTapped(_ post: FeedCellObject)
     func likeLabelTapped(_ post: FeedCellObject)
     func headerTapped(_ post: FeedCellObject)
+//    func likeButtonTapped(_ post: FeedCellObject)
      func profileTap()
+   
 }
-protocol FeedViewOutputProtocol: NSObject {
+protocol FeedViewOutputProtocol: class {
     // View -> Presenter
     
     var title: String { get }
@@ -27,8 +29,8 @@ protocol FeedViewOutputProtocol: NSObject {
     func postImageDoubleTapped(_ post: FeedCellObject)
     var doubleTappedLike: ((Int, Bool)-> Void)? { get set }
     func likeLabelTapped(_ post: FeedCellObject)
-    var likesLabelTapped: (([Any]) -> Void)? { get set }
-    func headerTapped(_ post: FeedCellObject)
+    var likesLabelTapped: (([DetailsObject]) -> Void)? { get set }
+//    func headerTapped(_ post: FeedCellObject)
       var headerTapped: ((ProfileHeaderObject, [ProfileCellObject]) -> Void)? { get set }
 }
 

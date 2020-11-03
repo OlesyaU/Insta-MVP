@@ -12,11 +12,11 @@ import DataProvider
 typealias Picture = UIImage
 
 final class FeedPresenter: NSObject {
-    
+//    weak var detView: DetailsInputProtocol?
     weak var view: FeedViewInputProtocol?
     private let model: FeedModel
     var doubleTappedLike: ((Int, Bool)-> Void)?
-    var likesLabelTapped: (([Any]) -> Void)?
+    var likesLabelTapped: (([DetailsObject]) -> Void)?
     var headerTapped: ((ProfileHeaderObject, [ProfileCellObject]) -> Void)?
     
     init(model: FeedModel) {
@@ -26,7 +26,6 @@ final class FeedPresenter: NSObject {
 
 // MARK: - FeedViewOutputProtocol
 extension FeedPresenter: FeedViewOutputProtocol {
-    
    
     func headerTapped(_ post: FeedCellObject) {
 //        let post = model.posts.first{
@@ -42,28 +41,22 @@ extension FeedPresenter: FeedViewOutputProtocol {
             let arr = profile.currentUserPosts.map{
                 ProfileCellObject(image: $0.image)
             }
-            headerTapped!(objectForProf, arr)
+            //            headerTapped(objectForProf, arr)
         }
     }
     
     func likeLabelTapped(_ post: FeedCellObject) {
-//         let post = model.posts.first{ $0.id == post.postId as! Post.Identifier}
-        let likers = DataProviders.shared.postsDataProvider.usersLikedPost(with: post.postId as! Post.Identifier)
-        guard let likerS = likers else {return}
-        print(likerS)
-        
-//        if  likesLabelTapped != nil {
-//            likesLabelTapped!(likerS)
-            let nbhy = likerS.compactMap {
-                DataProviders.shared.usersDataProvider.user(with: $0)
-//                DetailsObject(avatar: nhjjn.avatar, userName: nhjjn.username, userID: nhjjn.id)
+        if  let post = model.posts.first(where: { $0.id == post.postId as! Post.Identifier}) {
+            guard let users = DataProviders.shared.postsDataProvider.usersLikedPost(with: post.id) else {return}
+            
+            let array: [DetailsObject] = users.compactMap {
+                let object = DataProviders.shared.usersDataProvider.user(with: $0)
+                return  DetailsObject(avatar: object?.avatar, userName: object?.username ?? "username", userID: object?.id ?? "Id")
             }
-      likesLabelTapped!(nbhy)
+            likesLabelTapped?(array)
+            print(" func likeLabelTapped(_ post: FeedCellObject) из презентера")
         }
-        
-        
-//    }
-    
+    }
     
     func postImageDoubleTapped(_ post: FeedCellObject) {
         if let post = model.posts.first(where: { $0.id == post.postId as! Post.Identifier }) {
@@ -79,7 +72,6 @@ extension FeedPresenter: FeedViewOutputProtocol {
                     userLikesCount = DataProviders.shared.postsDataProvider.usersLikedPost(with: post.id)!.count
                 
             }
-            
             print("\(String(describing: userBool)) \(String(describing: userLikesCount)) в конце метода ")
             doubleTappedLike?(userLikesCount, userBool)
         }
@@ -107,9 +99,6 @@ extension FeedPresenter: FeedViewOutputProtocol {
         
         return formatter.string(from: post)
     }
-//    private func checkPost(_ post: FeedCellObject) -> Bool {
-//        if model.posts.first(where: { $0.id == post.postId as! Post.Identifier}) != nil {
-//        return true
-//        } else {return false}
-//    }
+
 }
+

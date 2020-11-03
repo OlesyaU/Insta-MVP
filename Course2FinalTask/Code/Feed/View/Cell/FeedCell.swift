@@ -11,7 +11,7 @@ import UIKit
 final class FeedCell: UITableViewCell {
     
     var delegate: FeedCellDelegate!
-    var datA: FeedCellObject?
+    private var datA: FeedCellObject?
     
     private let headerView: FeedHeader = {
         let headerView = FeedHeader(frame: .zero)
@@ -24,11 +24,10 @@ final class FeedCell: UITableViewCell {
     
     
    private lazy var footerView: FeedFooter = {
-        
         let footerView = FeedFooter(frame: .zero)
         footerView.translatesAutoresizingMaskIntoConstraints = false
         footerView.isUserInteractionEnabled = true
-    footerView.likeButton.addTarget(self, action:   #selector(likeButtonTapped(recognizer:)), for: .touchUpInside)
+    footerView.likeButton.addTarget(self, action: #selector(likeButtonTapped(recognizer:)), for: .touchUpInside)
     let gesture = UITapGestureRecognizer(target: self, action: #selector(likeLabelTapped(recognizer:)))
    footerView.likesLabel.addGestureRecognizer(gesture)
 return footerView
@@ -42,7 +41,6 @@ return footerView
         let gesture = UITapGestureRecognizer(target: self, action: #selector(imageDoubleTapped(_:)))
         gesture.numberOfTapsRequired = 2
         imageView.addGestureRecognizer(gesture)
-        
         return imageView
     }()
     
@@ -53,7 +51,6 @@ return footerView
         imageView.isUserInteractionEnabled = true
         imageView.alpha = 0
         imageView.image = #imageLiteral(resourceName: "bigLike")
-        
         return imageView
     }()
     
@@ -74,8 +71,6 @@ return footerView
             }
         }
     }
-    
-    
     
     // MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -125,16 +120,15 @@ return footerView
         showLikeAnimation()
        
 }
-    
-    
-        @objc private func postHeaderTapped(recognizer: UITapGestureRecognizer) {
-            delegate.headerTapped(self.datA!)
-            delegate.profileTap()
+       @objc private func postHeaderTapped(recognizer: UITapGestureRecognizer) {
+//            delegate.headerTapped(self.datA!)
+//            delegate.profileTap()
         }
     
         @objc private func likeButtonTapped(recognizer: UITapGestureRecognizer) {
             delegate.postImageDoubleTapped(self.datA!)
-        }
+     }
+    
     @objc private func likeLabelTapped(recognizer: UITapGestureRecognizer) {
         delegate.likeLabelTapped(self.datA!)
            }

@@ -15,6 +15,7 @@ class DetailsPresenter: NSObject {
     
    private let model: DetailsModel
     weak var view: DetailsInputProtocol?
+    var feedPresenter: FeedViewOutputProtocol?
     
     init(model: DetailsModel) {
         self.model = model
@@ -24,12 +25,23 @@ class DetailsPresenter: NSObject {
     
 }
 extension DetailsPresenter: DetailsOutputProtocol {
+    func viewisLikes() {
+        view?.setupInitialState()
+//        let feedpres: FeedViewOutputProtocol
+        feedPresenter?.likesLabelTapped = {
+//        feedpres.likesLabelTapped = {
+            arr in
+            self.view?.setUsers(arr)
+        }
+        
+    }
     func viewIsReadyFollowing() {
         view?.setupInitialState()
-        let following = model.following.map{
-            DetailsObject(avatar: $0.avatar, userName: $0.username, userID: $0.id)
-        }
-        view?.setUsers(following)
+//        let following = model.following.map{
+//            DetailsObject(avatar: $0.avatar, userName: $0.username, userID: $0.id)
+//        }
+//        view.u
+//        view?.setUsers(following)
     }
     
     

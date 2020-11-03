@@ -18,8 +18,12 @@ protocol DetailsInputProtocol: NSObject {
 protocol DetailsOutputProtocol: NSObject {
     // View -> Presenter
     var title: String { get }
+     func viewisLikes()
     func viewIsReadyFollowers()
      func viewIsReadyFollowing() 
+    
+}
+protocol DetailsCellDelegate {
     
 }
 //protocol ProfileInputProtocol: NSObject {
